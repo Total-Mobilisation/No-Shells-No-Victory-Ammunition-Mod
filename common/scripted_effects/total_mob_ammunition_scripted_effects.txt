@@ -1,0 +1,241 @@
+#Daily experience checker
+total_mob_daily_xp_change_calculator = {
+	#Sets variables if not set before
+	IF = {
+		LIMIT = {
+			NOT = { has_variable = previous_day_army_xp }
+		}
+		set_variable = { previous_day_army_xp = has_army_experience}
+	}
+	#Checks if land XP has changed - then act accordingly
+	IF = {
+		LIMIT = {
+			OR = {
+				NOT = { check_variable = { previous_day_army_xp = has_army_experience}
+			}
+		}
+		#If army xp is increased factor out army exp and daily change
+		IF = {
+			LIMIT = {
+				check_variable = { previous_day_army_xp < has_army_experience
+			}
+			#First get change
+			set_variable = { army_ammunition_expenditure = has_army_experience }
+			subtract_from_variable = { army_ammunition_expenditure = previous_day_army_xp }
+			
+			#Then determine factor to divide by
+			set_variable = { army_experience_factor_total = 1 }
+			add_to_variable = { army_experience_factor_total = modifier@experience_gain_army_factor }
+
+			#Divide experience gain by it
+			divide_variable = { army_ammunition_expenditure = army_experience_factor_total }
+
+			#Subtract daily xp gain
+			subtract_from_variable = { army_ammunition_expenditure = modifier@experience_gain_army }
+		}
+		#Caps army experience at 450
+		If = {
+			LIMIT = {
+				check_variable = { has_army_experience > 450 }
+			}
+			set_variable = { experience_cap_amount = has_army_experience }
+			subtract_from_variable = { experience_cap_amount = 450 }
+			multiply_variable = { experience_cap_amount = -1}
+			army_experience = experience_cap_amount
+		}
+		#Always set previous_day_army_xp
+		set_variable = { previous_day_army_xp = has_army_experience}
+	}
+}
+
+#Checks army composition
+total_mob_army_composition_effect = {
+	#Gets equipment and multiplies by ammo consumption
+	set_variable = { equipped_infantry_battalions = num_equipment_in_armies_k@infantry_equipment }
+	multiply_variable = { equipped_infantry_battalions = 1 }
+	set_variable = { equipped_artillery_battalions = num_equipment_in_armies@artillery_equipment }
+	add_to_variable = { equipped_artillery_battalions = num_equipment_in_armies@light_tank_chassis }
+	add_to_variable = { equipped_artillery_battalions = num_equipment_in_armies@medium_tank_chassis }
+	add_to_variable = { equipped_artillery_battalions = num_equipment_in_armies@heavy_tank_chassis }
+	add_to_variable = { equipped_artillery_battalions = num_equipment_in_armies@modern_tank_chassis }
+	divide_variable = { equipped_artillery_battalions = 12 }
+	set_variable = { equipped_anti_tank_battalions = num_equipment_in_armies@anti_tank_equipment }
+	divide_variable = { equipped_anti_tank_battalions = 36 }
+	set_variable = { equipped_anti_air_battalions = num_equipment_in_armies@anti_air_equipment }
+	divide_variable = { equipped_anti_air_battalions = 36 }
+
+	#Figures out composition
+	set_variable = { total_battalions = equipped_infantry_battalions }
+	add_to_variable = { total_battalions = equipped_anti_tank_battalions }
+	add_to_variable = { total_battalions = equipped_anti_air_battalions }
+	set_variable = { total_non_heavy_battalions = total_battalions }
+	add_to_variable = { total_battalions = equipped_artillery_battalions }
+
+	#More artillery (note tanks are artillery for these purposes) equal more ammo usage
+	set_variable = { ammo_usage_modifier = total_battalions }
+	divide_variable = { ammo_usage_modifier = total_non_heavy_battalions }
+}
+
+#Removes and consumes ammunition
+total_mob_ammunition_consumption_effect = {
+	#Checks if ammo has been used
+	IF = {
+		LIMIT = { 
+			army_ammunition_expenditure > 0
+		}
+		
+		#Remove ammunition from stockpile if there's enough
+		IF = {
+			LIMIT = {
+				check_variable = { num_equipment@land_ammunition_equipment > army_ammunition_expenditure }
+			}
+			
+			set_variable = { negative_ammunition_consumption = army_ammunition_expenditure }
+			multiply_variable = { negative_ammunition_consumption = -1 }
+			
+			add_equipment_to_stockpile = {
+				type = land_ammunition_equipment
+				amount = negative_ammunition_consumption
+			}
+			ELSE = {
+				set_variable = { negative_ammunition_consumption = num_equipment@land_ammunition_equipment }
+				multiply_variable = { negative_ammunition_consumption = -1 }
+				
+				add_equipment_to_stockpile = {
+					type = land_ammunition_equipment
+					amount = negative_ammunition_consumption
+				}
+			}
+		}
+	}
+	ELSE = {
+		set_variable = { ammunition_consumption = 0 }
+	}
+}
+
+#Calculates ammo calculation
+total_mob_ammunition_calculation_effects = {
+
+	#Apply additional ammo modifiers based on army size
+	set_variable = { xp_gain_multiplier = 1.01 }
+	multiply_variable = { xp_gain_multiplier = 10 }
+	divide_variable = { xp_gain_multiplier = average_manpower_per_division }
+	
+	#Calculates Army Daily Use
+	set_variable = { max_daily_ammo_use = xp_gain_multiplier }
+	multiply_variable = { max_daily_ammo_use = num_battalions }
+	
+	set_variable = { max_daily_ammo_use_plus_air = max_daily_ammo_use }
+	add_to_variable = { max_daily_ammo_use_plus_air = airforce_max_ammo_use }
+
+	#Factors in composition
+	multiply_variable = { xp_gain_multiplier = xp_army_composition_modifier }
+	
+	#Factors in ammo usage malus
+	multiply_variable = { xp_gain_multiplier = ammo_usage_modifier }
+	
+	#Minuses 1 for modifier purposes
+	subtract_from_variable = { xp_gain_multiplier = 1 }
+	
+	#Calculate days of max ammo usage left
+	set_variable = { days_left_of_max_ammo_usage = num_equipment@land_ammunition_equipment }
+	divide_variable = { days_left_of_max_ammo_usage = max_daily_ammo_use }
+	
+	#Calculate days of current ammo usage left
+	set_variable = { days_left_of_daily_ammo_usage = num_equipment@land_ammunition_equipment }
+	divide_variable = { days_left_of_daily_ammo_usage = ammunition_consumption }
+	
+		
+	#Max ammo usage including air
+	set_variable = { days_left_of_max_ammo_usage_including_air = num_equipment@land_ammunition_equipment }
+	divide_variable = { days_left_of_max_ammo_usage_including_air = max_daily_ammo_use_plus_air }
+	
+	#Calculate Attack Modifiers based on ammo.
+	
+	#Ammo over 10 days has no penalties
+	IF = {
+		LIMIT = {check_variable = { days_left_of_max_ammo_usage > 10 } }
+		set_variable = { ammo_malus = 0 }
+		set_variable = { ammo_usage_modifier = 1 }
+		
+		set_variable = { standard_ammo_malus = ammo_malus }
+		set_variable = { militia_ammo_malus = ammo_malus }
+		set_variable = { light_infantry_ammo_malus = ammo_malus }
+		set_variable = { heavy_infantry_ammo_malus = ammo_malus }
+		
+	}
+	#Ammo below 10 days and above 5 days starts to scale down
+	ELSE_IF = {
+
+		#Calculate Penalty
+		set_variable = { ammo_malus = days_left_of_max_ammo_usage }
+		subtract_from_variable = { ammo_malus = 10 }
+		set_variable = { ammo_usage_modifier = ammo_malus }
+		multiply_variable = { ammo_malus = 0.05 }
+		
+		#Calculate Ammo Usage
+		multiply_variable = { ammo_usage_modifier = -0.1 }
+		add_to_variable = { ammo_usage_modifier = 1 }
+		
+		#Ammo below 5 days gets increased penalties
+		IF = {
+
+			LIMIT = {
+                         is_ai = no 
+                          check_variable = { days_left_of_max_ammo_usage < 5 } }
+			
+			#Multiplies Ammo Malus Penalties
+			divide_variable = { ammo_malus = 0.75 }
+		}
+		
+		#Ammo below 2.5 days gets increased penalties
+		IF = {
+
+			LIMIT = { 
+                         is_ai = no 
+                         check_variable = { days_left_of_max_ammo_usage < 2.5 } }
+			
+			#Multiplies Ammo Malus Penalties
+			multiply_variable = { ammo_malus = 3 }
+			divide_variable = { ammo_malus = 2 }
+		}
+	}
+}
+
+#AI ammo production effect
+total_mob_ai_ammunition_production_effect = {
+	#Reduces AI mil production by a certain percent to force it to build ammunition
+	IF = {
+		LIMIT = { is_ai = yes }
+		set_variable = { ai_mil_ammo_production_adjustment = 1 }
+		add_to_variable = { ai_mil_ammo_production_adjustment = mil_bonus }
+		IF = {
+			LIMIT = { check_variable = { days_left_of_max_ammo_usage > 30 } }
+			multiply_variable = { ai_mil_ammo_production_adjustment = -0.35 }
+		}
+		ELSE_IF = {
+			LIMIT = { check_variable = { days_left_of_max_ammo_usage > 25 } }
+			multiply_variable = { ai_mil_ammo_production_adjustment = -0.45 }
+		}
+		ELSE_IF = {
+			LIMIT = { check_variable = { days_left_of_max_ammo_usage > 15 } }
+			multiply_variable = { ai_mil_ammo_production_adjustment = -0.50 }
+		}
+		ELSE_IF = {
+			multiply_variable = { ai_mil_ammo_production_adjustment = -0.60 }
+		}
+		#Calculates IC for ammo
+		set_variable = { ammo_to_add = ai_mil_ammo_production_adjustment }
+		multiply_variable = { ammo_to_add = -1.4 } # -1 to flip * 14 for mil ic * 0.1 for ammo cost
+		multiply_variable = { ammo_to_add = num_of_military_factories }
+		
+		add_equipment_to_stockpile = {
+			type = land_ammunition_equipment
+			amount = ammo_to_add
+		}
+	}
+	ELSE_IF = {
+		LIMIT = { is_ai = no }
+		set_variable = { ai_mil_ammo_production_adjustment = 0 }
+	}
+}

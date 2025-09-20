@@ -1,0 +1,14 @@
+﻿l_english:
+ 
+ #Ammunition Usage 
+ #Ammunition Usage 
+ ammunition_days_left_value_loc_1_loc_key:0 "§G[?days_left_of_max_ammo_usage_including_air|1] Days Max§!"
+ ammunition_days_left_value_loc_2_loc_key:0 "§Y[?days_left_of_max_ammo_usage_including_air|1] Days Max§!"
+ ammunition_days_left_value_loc_3_loc_key:0 "§R[?days_left_of_max_ammo_usage_including_air|1] Days Max§!"
+ ammunition_days_left_value_loc_4_loc_key:0 "§G[?days_left_of_daily_ammo_usage|1] Days Current§!"
+ ammunition_days_left_value_loc_5_loc_key:0 "§Y[?days_left_of_daily_ammo_usage|1] Days Current§!"
+ ammunition_days_left_value_loc_6_loc_key:0 "§R[?days_left_of_daily_ammo_usage|1] Days Current§!"
+ ammunition_days_left_value_loc_7_loc_key:0 "No Usage"
+ 
+ #Tooltip
+ ammunition_tooltip_desc:0 "§YMunitions§!\nRemaining days of ammo. Green values indicate no penalty to combat power/ammunition expenditure, yellow indicates moderate penalties whilst red indicates critical combat penalties."
