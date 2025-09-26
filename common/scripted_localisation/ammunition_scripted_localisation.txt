@@ -24,22 +24,22 @@ defined_text = {
 	name = ammunition_days_left_current_value_loc
 	text = {
 		trigger = {
-			check_variable = { days_left_of_max_ammo_usage > 10 }
+			check_variable = { days_left_of_daily_ammo_usage > 10 }
 			NOT = { check_variable = { army_ammunition_expenditure = 0 } }
 		}
 		localization_key = ammunition_days_left_value_loc_4_loc_key
 	}
 	text = {
 		trigger = {
-			check_variable = { days_left_of_max_ammo_usage < 10 }
-			check_variable = { `days_left_of_max_ammo_usage` > 2.5 }
+			check_variable = { days_left_of_daily_ammo_usage < 10 }
+			check_variable = { `days_left_of_daily_ammo_usage > 2.5 }
 			NOT = { check_variable = { army_ammunition_expenditure = 0 } }
 		}
 		localization_key = ammunition_days_left_value_loc_5_loc_key
 	}
 	text = {
 		trigger = {
-			check_variable = { days_left_of_max_ammo_usage < 2.5 }
+			check_variable = { days_left_of_daily_ammo_usage < 2.5 }
 			NOT = { check_variable = { army_ammunition_expenditure = 0 } }
 		}
 		localization_key = ammunition_days_left_value_loc_6_loc_key
