@@ -26,3 +26,11 @@
 #	can be added to countries, states or unit leaders
 #	will only updated daily, unless forced by force_update_dynamic_modifier effect
 
+ammo_adjustment_modifier = {
+    industrial_capacity_factory = ai_mil_ammo_production_adjustment
+
+    army_attack_factor = artillery_ammo_malus
+    army_infantry_attack_factor = infantry_ammo_malus_offset
+    motorized_attack_factor = infantry_ammo_malus_offset
+    mechanized_attack_factor = infantry_ammo_malus_offset
+}

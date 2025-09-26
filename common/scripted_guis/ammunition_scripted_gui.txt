@@ -1,0 +1,10 @@
+scripted_gui = {
+	ammunition_value_window = {
+		window_name = "ammunition_value_window"
+		context_type = player_context
+		parent_window_token = top_bar
+		visible = {
+			always = yes
+		}
+	}
+}

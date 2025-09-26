@@ -6,7 +6,7 @@ equipments = {
 		is_archetype = yes
 		picture = archetype_infantry_equipment
 		is_buildable = no
-		type = flame
+		type = infantry
 		group_by = archetype
 		
 		interface_category = interface_category_land
@@ -32,7 +32,7 @@ equipments = {
 		archetype = land_ammunition_equipment
 		priority = 100
 		
-		active = active
+		active = yes
 		is_buildable = yes
 	
 	}
