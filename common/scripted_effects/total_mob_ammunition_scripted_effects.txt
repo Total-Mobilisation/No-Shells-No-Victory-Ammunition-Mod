@@ -137,11 +137,9 @@ total_mob_ammunition_calculation_effects = {
 	set_variable = { days_left_of_daily_ammo_usage = num_equipment@land_ammunition_equipment }
 	divide_variable = { days_left_of_daily_ammo_usage = army_ammunition_expenditure }
 
-	set_variable = { max_daily_ammo_use_plus_air = days_left_of_daily_ammo_usage }
-
 	#Max ammo usage including air
 	set_variable = { days_left_of_max_ammo_usage_including_air = num_equipment@land_ammunition_equipment }
-	divide_variable = { days_left_of_max_ammo_usage_including_air = max_daily_ammo_use_plus_air }
+	divide_variable = { days_left_of_max_ammo_usage_including_air = max_daily_ammo_days_left_of_max_ammo_usageuse_plus_air }
 	
 	#Calculate Attack Modifiers based on ammo.
 	

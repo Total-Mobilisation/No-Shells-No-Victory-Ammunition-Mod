@@ -25,28 +25,28 @@ defined_text = {
 	text = {
 		trigger = {
 			check_variable = { days_left_of_max_ammo_usage > 10 }
-			NOT = { check_variable = { consumption = 0 } }
+			NOT = { check_variable = { army_ammunition_expenditure = 0 } }
 		}
 		localization_key = ammunition_days_left_value_loc_4_loc_key
 	}
 	text = {
 		trigger = {
 			check_variable = { days_left_of_max_ammo_usage < 10 }
-			check_variable = { days_left_of_max_ammo_usage > 2.5 }
-			NOT = { check_variable = { consumption = 0 } }
+			check_variable = { `days_left_of_max_ammo_usage` > 2.5 }
+			NOT = { check_variable = { army_ammunition_expenditure = 0 } }
 		}
 		localization_key = ammunition_days_left_value_loc_5_loc_key
 	}
 	text = {
 		trigger = {
 			check_variable = { days_left_of_max_ammo_usage < 2.5 }
-			NOT = { check_variable = { consumption = 0 } }
+			NOT = { check_variable = { army_ammunition_expenditure = 0 } }
 		}
 		localization_key = ammunition_days_left_value_loc_6_loc_key
 	}
 	text = {
 		trigger = {
-			check_variable = { consumption = 0 }
+			check_variable = { army_ammunition_expenditure = 0 }
 		}
 		localization_key = ammunition_days_left_value_loc_7_loc_key
 	}
