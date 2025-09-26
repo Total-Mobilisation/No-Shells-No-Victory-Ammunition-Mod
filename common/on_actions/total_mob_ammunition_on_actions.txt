@@ -14,8 +14,7 @@ on_actions = {
 				total_mob_army_composition_effect = yes
 				total_mob_ammunition_consumption_effect = yes
 				total_mob_ammunition_calculation_effects = yes
-				add_dynamic_modifier = { modifier = ammo_adjustment_modifier }
-
+				
 				#Add ammunition
 				set_variable = { ammunition_to_add = max_daily_ammo_use }
 				multiply_variable = { ammunition_to_add = 15 }
@@ -30,6 +29,7 @@ on_actions = {
 	}
 	on_daily = {
 		effect = {
+			add_dynamic_modifier = { modifier = ammo_adjustment_modifier }
 			#Modifiers
 			total_mob_daily_xp_change_calculator = yes
 			total_mob_army_composition_effect = yes
