@@ -1,0 +1,8 @@
+spriteTypes = {	
+
+	### AMMUNITION TECHNOLOGY IMAGES ###
+	SpriteType = {
+		name = "GFX_ammunition_equipment_medium"
+		texturefile = "gfx/interface/technologies/ammunition_equipment.dds"
+	}
+}

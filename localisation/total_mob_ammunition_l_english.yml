@@ -12,6 +12,8 @@
  #Ammunition
  ammunition_equipment:0 "Ammunition"
  ammunition_equipment_desc:0 "Shells, bullets and bombs used for warfare."
+ land_ammunition_equipment:0 "Ammunition"
+ land_ammunition_equipment_desc:0 "Shells, bullets and bombs used for warfare."
  
  #Tooltip
  ammunition_tooltip_desc:0 "§YMunitions§!\nRemaining days of ammo. Green values indicate no penalty to combat power/ammunition expenditure, yellow indicates moderate penalties whilst red indicates critical combat penalties."

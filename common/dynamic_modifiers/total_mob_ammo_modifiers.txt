@@ -13,7 +13,7 @@
 #	}
 #
 #
-#	In a script file:
+#	In a script file:`
 #
 #	effect = {
 #		add_dynamic_modifier = {
