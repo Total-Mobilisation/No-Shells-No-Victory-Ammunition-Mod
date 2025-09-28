@@ -18,7 +18,7 @@ equipments = {
 		
 		is_convertable = no  
 		
-		build_cost_ic = 3
+		build_cost_ic = 5
 		
 		resources = {
 			steel = 2
