@@ -145,8 +145,8 @@ total_mob_ammunition_calculation_effects = {
 	divide_variable = { days_left_of_daily_ammo_usage = 1000 }
 	divide_variable = { days_left_of_daily_ammo_usage = army_ammunition_expenditure }
 	IF = {
-		LIMIT = { days_left_of_max_ammo_usage > 2500 }
-		set_variable = { days_left_of_max_ammo_usage = 0 }
+		LIMIT = { days_left_of_daily_ammo_usage > 2500 }
+		set_variable = { days_left_of_daily_ammo_usage = 0 }
 	}
 	multiply_variable = { days_left_of_daily_ammo_usage = 1000 }
 
