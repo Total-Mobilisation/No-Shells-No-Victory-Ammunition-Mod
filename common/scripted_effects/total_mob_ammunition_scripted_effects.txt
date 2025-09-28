@@ -230,7 +230,9 @@ total_mob_ai_ammunition_production_effect = {
 		LIMIT = { is_ai = yes }
 		set_variable = { ai_mil_ammo_production_adjustment = 1 }
 		add_to_variable = { ai_mil_ammo_production_adjustment = modifier@industrial_capacity_factory }
-		multiply_variable = { ai_mil_ammo_production_adjustment = modifier@production_factory_max_efficiency_factor }
+		set_production = { production_cap_modifier_ammo = 1 }
+		add_to_variable = { production_cap_modifier_ammo = modifier@production_factory_max_efficiency_factor }
+		multiply_variable = { ai_mil_ammo_production_adjustment = production_cap_modifier_ammo }
 		IF = {
 			LIMIT = { check_variable = { days_left_of_max_ammo_usage > 30 } }
 			multiply_variable = { ai_mil_ammo_production_adjustment = -0.35 }
