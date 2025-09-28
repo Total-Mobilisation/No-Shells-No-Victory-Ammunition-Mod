@@ -4,7 +4,7 @@ guiTypes = {
 		
 		containerWindowType = {
 			name = "background"
-			position = { x= 1000 y = 5}
+			position = { x= 966 y = 5}
 			clipping = no
 			size = { width=300 height=30 }
 			Orientation = UPPER_LEFT
@@ -17,7 +17,7 @@ guiTypes = {
 		
 		containerWindowType = {
 			name = "ammo_days_max"
-			position = { x= 1000 y = 5}
+			position = { x= 966 y = 5}
 			clipping = no
 			size = { width=150 height=30 }
 			Orientation = UPPER_LEFT
@@ -48,7 +48,7 @@ guiTypes = {
 		}
 		containerWindowType = {
 			name = "ammo_days_current"
-			position = { x= 150 y = 5}
+			position = { x= 1156 y = 5}
 			clipping = no
 			size = { width=150 height=30 }
 			Orientation = UPPER_LEFT
