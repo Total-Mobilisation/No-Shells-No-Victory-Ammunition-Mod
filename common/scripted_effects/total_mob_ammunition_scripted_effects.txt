@@ -32,6 +32,10 @@ total_mob_daily_xp_change_calculator = {
 
 			#Subtract daily xp gain
 			subtract_from_variable = { army_ammunition_expenditure = modifier@experience_gain_army }
+
+			#Multiply by ammo usage modifiers
+			multiply_variable = { army_ammunition_expenditure = ammo_usage_modifier }
+			multiply_variable = { army_ammunition_expenditure = additional_ammo_usage_modifier }
 			
 			#Calculate army experience to offset
 			set_variable = { army_experience_offset = army_ammunition_expenditure }
@@ -129,6 +133,7 @@ total_mob_ammunition_calculation_effects = {
 	set_variable = { max_daily_ammo_use = xp_gain_multiplier }
 	multiply_variable = { max_daily_ammo_use = total_battalions }
 	multiply_variable = { max_daily_ammo_use = ammo_usage_modifier }
+	multiply_variable = { max_daily_ammo_use = additional_ammo_usage_modifier }
 	
 	#Factors in ammo usage malus
 	multiply_variable = { xp_gain_multiplier = ammo_usage_modifier }
@@ -145,7 +150,7 @@ total_mob_ammunition_calculation_effects = {
 	divide_variable = { days_left_of_daily_ammo_usage = 1000 }
 	divide_variable = { days_left_of_daily_ammo_usage = army_ammunition_expenditure }
 	IF = {
-		LIMIT = { days_left_of_daily_ammo_usage > 2500 }
+		LIMIT = { check_variable = { days_left_of_daily_ammo_usage > 2500 } }
 		set_variable = { days_left_of_daily_ammo_usage = 0 }
 	}
 	multiply_variable = { days_left_of_daily_ammo_usage = 1000 }
@@ -174,17 +179,7 @@ total_mob_ammunition_calculation_effects = {
 		#Calculate Penalty
 		set_variable = { ammo_malus = days_left_of_max_ammo_usage }
 		subtract_from_variable = { ammo_malus = 10 }
-		set_variable = { ammo_usage_modifier = ammo_malus }
 		multiply_variable = { ammo_malus = 0.05 }
-
-		set_variable = { artillery_ammo_malus = ammo_malus }
-		multiply_variable = { artillery_ammo_malus = 2 }
-		set_variable = { infantry_ammo_malus_offset = ammo_malus }
-		multiply_variable = { infantry_ammo_malus_offset = -0.5 }
-		
-		#Calculate Ammo Usage
-		multiply_variable = { ammo_usage_modifier = -0.1 }
-		add_to_variable = { ammo_usage_modifier = 1 }
 		
 		#Ammo below 5 days gets increased penalties
 		IF = {
@@ -196,11 +191,6 @@ total_mob_ammunition_calculation_effects = {
 			
 			#Multiplies Ammo Malus Penalties
 			divide_variable = { ammo_malus = 0.75 }
-
-			set_variable = { artillery_ammo_malus = ammo_malus }
-			multiply_variable = { artillery_ammo_malus = 2 }
-			set_variable = { infantry_ammo_malus_offset = ammo_malus }
-			multiply_variable = { infantry_ammo_malus_offset = -0.5 }
 		}
 		
 		#Ammo below 2.5 days gets increased penalties
@@ -215,11 +205,17 @@ total_mob_ammunition_calculation_effects = {
 			multiply_variable = { ammo_malus = 3 }
 			divide_variable = { ammo_malus = 2 }
 
-			set_variable = { artillery_ammo_malus = ammo_malus }
-			multiply_variable = { artillery_ammo_malus = 2 }
-			set_variable = { infantry_ammo_malus_offset = ammo_malus }
-			multiply_variable = { infantry_ammo_malus_offset = -0.5 }
+			
 		}
+		#Reduce ammo usage
+		set_variable = { additional_ammo_usage_modifier = ammo_malus }
+		multiply_variable = { additional_ammo_usage_modifier = -0.1 }
+		add_to_variable = { additional_ammo_usage_modifier = 1 }
+
+		#Impact stats
+		set_variable = { artillery_ammo_malus = ammo_malus }
+		set_variable = { infantry_ammo_malus_offset = ammo_malus }
+		multiply_variable = { infantry_ammo_malus_offset = -0.5 }
 	}
 }
 
