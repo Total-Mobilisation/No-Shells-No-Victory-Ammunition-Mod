@@ -209,8 +209,7 @@ total_mob_ammunition_calculation_effects = {
 		}
 		#Reduce ammo usage
 		set_variable = { additional_ammo_usage_modifier = ammo_malus }
-		multiply_variable = { additional_ammo_usage_modifier = -0.1 }
-		add_to_variable = { additional_ammo_usage_modifier = 1 }
+		add_to_variable = { additional_ammo_usage_modifier = 1.01 }
 
 		#Impact stats
 		set_variable = { artillery_ammo_malus = ammo_malus }
