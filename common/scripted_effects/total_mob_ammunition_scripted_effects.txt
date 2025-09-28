@@ -58,7 +58,7 @@ total_mob_daily_xp_change_calculator = {
 total_mob_army_composition_effect = {
 	#Gets equipment and multiplies by ammo consumption
 	set_variable = { equipped_infantry_battalions = num_equipment_in_armies_k@infantry_equipment }
-	multiply_variable = { equipped_infantry_battalions = 1 }
+	multiply_variable = { equipped_infantry_battalions = 10 }
 	set_variable = { equipped_artillery_battalions = num_equipment_in_armies@artillery_equipment }
 	add_to_variable = { equipped_artillery_battalions = num_equipment_in_armies@light_tank_chassis }
 	add_to_variable = { equipped_artillery_battalions = num_equipment_in_armies@medium_tank_chassis }
