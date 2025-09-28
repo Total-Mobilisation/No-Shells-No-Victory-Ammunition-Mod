@@ -133,7 +133,6 @@ total_mob_ammunition_calculation_effects = {
 	set_variable = { max_daily_ammo_use = xp_gain_multiplier }
 	multiply_variable = { max_daily_ammo_use = total_battalions }
 	multiply_variable = { max_daily_ammo_use = ammo_usage_modifier }
-	multiply_variable = { max_daily_ammo_use = additional_ammo_usage_modifier }
 	
 	#Factors in ammo usage malus
 	multiply_variable = { xp_gain_multiplier = ammo_usage_modifier }
