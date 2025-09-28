@@ -142,7 +142,13 @@ total_mob_ammunition_calculation_effects = {
 	
 	#Calculate days of current ammo usage left
 	set_variable = { days_left_of_daily_ammo_usage = num_equipment@land_ammunition_equipment }
+	divide_variable = { days_left_of_daily_ammo_usage = 1000 }
 	divide_variable = { days_left_of_daily_ammo_usage = army_ammunition_expenditure }
+	IF = {
+		LIMIT = { days_left_of_max_ammo_usage > 2500 }
+		set_variable = { days_left_of_max_ammo_usage = 0 }
+	}
+	multiply_variable = { days_left_of_daily_ammo_usage = 1000 }
 
 	#Max ammo usage including air
 	set_variable = { days_left_of_max_ammo_usage_including_air = num_equipment@land_ammunition_equipment }
@@ -224,6 +230,7 @@ total_mob_ai_ammunition_production_effect = {
 		LIMIT = { is_ai = yes }
 		set_variable = { ai_mil_ammo_production_adjustment = 1 }
 		add_to_variable = { ai_mil_ammo_production_adjustment = modifier@industrial_capacity_factory }
+		multiply_variable = { ai_mil_ammo_production_adjustment = modifier@production_factory_max_efficiency_factor }
 		IF = {
 			LIMIT = { check_variable = { days_left_of_max_ammo_usage > 30 } }
 			multiply_variable = { ai_mil_ammo_production_adjustment = -0.35 }
@@ -241,7 +248,7 @@ total_mob_ai_ammunition_production_effect = {
 		}
 		#Calculates IC for ammo
 		set_variable = { ammo_to_add = ai_mil_ammo_production_adjustment }
-		multiply_variable = { ammo_to_add = -10 } # -1 to flip * 14 for mil ic * 0.1 for ammo cost
+		multiply_variable = { ammo_to_add = -1.4 }
 		multiply_variable = { ammo_to_add = num_of_military_factories }
 		
 		add_equipment_to_stockpile = {
