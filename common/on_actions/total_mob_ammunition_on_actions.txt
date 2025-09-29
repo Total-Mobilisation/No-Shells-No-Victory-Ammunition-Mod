@@ -37,14 +37,8 @@ on_actions = {
 			total_mob_ammunition_consumption_effect = yes
 			total_mob_ammunition_calculation_effects = yes
 			total_mob_ai_ammunition_production_effect = yes
-				IF = { LIMIT = { check_variable = { days_left_of_max_ammo_usage > 30 }}
-					remove_ideas = days_ammo_10
-					add_ideas = days_ammo_30 }
-				IF = { LIMIT = { check_variable = { days_left_of_max_ammo_usage < 15 }}
-					remove_ideas = days_ammo_30
-					add_ideas = days_ammo_10
 
-				}
+				
 		}
 	}
 }
