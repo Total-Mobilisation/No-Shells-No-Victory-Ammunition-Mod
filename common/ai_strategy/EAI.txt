@@ -1,0 +1,1093 @@
+default_equipment_production = { #If adding country-unique ones, bear in mind that they STACK
+	enable = {
+		always = yes
+	}
+	ai_strategy = {
+		type = equipment_production_factor
+		id = fighter
+		value = 35
+	}
+	ai_strategy = {
+		type = equipment_production_factor
+		id = cas
+		value = 35
+	}
+	ai_strategy = {
+		type = equipment_production_factor
+		id = tactical_bomber
+		value = 35
+	}
+	ai_strategy = {
+		type = equipment_production_factor
+		id = armor
+		value = 10
+	}
+	ai_strategy = {
+		type = equipment_production_factor
+		id = infantry
+		value = 5
+	}
+	ai_strategy = {
+		type = equipment_production_factor
+		id = support
+		value = 40
+	}
+	ai_strategy = {
+		type = equipment_production_factor
+		id = artillery
+		value = 100
+	}
+	ai_strategy = {
+		type = equipment_production_factor
+		id = motorized
+		value = 40
+	}
+	ai_strategy = {
+		type = equipment_production_factor
+		id = mechanized
+		value = -50
+	}
+	ai_strategy = {
+		type = equipment_production_factor
+		id = anti_tank
+		value = 25
+	}
+	ai_strategy = {
+		type = equipment_production_factor
+		id = anti_air
+		value = -50
+	}
+	ai_strategy = {
+		type = equipment_variant_production_factor
+		id = anti_air
+		value = -50
+	}
+
+}
+
+
+
+major_air_limit_tac_0 = {
+	enable = { 
+		num_of_military_factories < 120
+		num_of_military_factories > 60
+ 		has_war = yes
+		has_deployed_air_force_size = { size < 1000 type = tactical_bomber }  
+	}
+	abort = { 
+		num_of_military_factories > 120
+
+ has_deployed_air_force_size = { size > 1200 type = tactical_bomber }
+}
+	ai_strategy = {
+		type = equipment_production_min_factories
+		id = tactical_bomber
+		value = 30
+	}
+	ai_strategy = { type = air_factory_balance value = 25 }
+
+	ai_strategy = { type = equipment_production_factor id = tactical_bomber 		value = 1000	}
+}
+major_air_limit_tac_1 = {
+	enable = { 
+		num_of_military_factories > 120
+ 		has_war = yes
+		has_deployed_air_force_size = { size < 1000 type = tactical_bomber }  
+	}
+	abort = { 
+		num_of_military_factories < 120
+ has_deployed_air_force_size = { size > 1200 type = tactical_bomber
+	}
+}
+	ai_strategy = {
+		type = equipment_production_min_factories
+		id = tactical_bomber
+		value = 60
+	}
+	ai_strategy = { type = air_factory_balance value = 25 }
+	ai_strategy = { type = equipment_production_factor id = tactical_bomber 		value = 1000	}
+}
+
+major_air_limit_fighter_0 = {
+	enable = { 
+		num_of_military_factories > 60
+ 		has_war = yes
+		has_deployed_air_force_size = { size < 1500 type = fighter }  
+	}
+	abort = { 
+		num_of_military_factories > 120
+
+ has_deployed_air_force_size = { size > 1600 type = fighter
+	}
+}
+	ai_strategy = { type = air_factory_balance value = 25 }
+
+	ai_strategy = {
+		type = equipment_production_min_factories
+		id = fighter
+		value = 30
+	}
+	ai_strategy = { type = equipment_production_factor id = fighter 		value = 1000	}
+
+}
+major_air_limit_fighter_1 = {
+	enable = { 
+		num_of_military_factories > 120
+ 		has_war = yes
+		has_deployed_air_force_size = { size < 2500 type = fighter }  
+	}
+	abort = { 
+ has_deployed_air_force_size = { size > 2600 type = fighter
+	}
+}
+	ai_strategy = { type = air_factory_balance value = 25 }
+
+	ai_strategy = {
+		type = equipment_production_min_factories
+		id = fighter
+		value = 60
+	}
+	ai_strategy = { type = equipment_production_factor id = fighter 		value = 1000	}
+
+}
+major_air_limit_CAS_0 = {
+	enable = { 
+		num_of_military_factories < 120
+
+		num_of_military_factories > 60
+ 		has_war = yes
+		has_deployed_air_force_size = { size < 400 type = CAS }  
+	}
+	abort = { 
+ has_deployed_air_force_size = { size > 600 type = CAS
+	}
+}
+	ai_strategy = { type = air_factory_balance value = 25 }
+
+	ai_strategy = {
+		type = equipment_production_min_factories
+		id = cas
+		value = 20
+	}
+	ai_strategy = { type = equipment_production_factor id = cas 		value = 1000	}
+
+}
+major_air_limit_CAS_1 = {
+	enable = { 
+		num_of_military_factories > 120
+ 		has_war = yes
+		has_deployed_air_force_size = { size < 600 type = CAS }  
+	}
+	abort = { 
+		num_of_military_factories < 120
+
+ has_deployed_air_force_size = { size > 1200 type = CAS}
+	}
+	ai_strategy = { type = air_factory_balance value = 25 }
+
+	ai_strategy = {
+		type = equipment_production_min_factories
+		id = cas
+		value = 20
+	}
+	ai_strategy = { type = equipment_production_factor id = cas 		value = 1000	}
+
+}
+air_limit_tac_0 = {
+	enable = { 
+		num_of_military_factories < 76
+		has_deployed_air_force_size = { size > 600 type = tactical_bomber }  
+	}
+	abort = { 
+		OR = {
+			NOT = { has_deployed_air_force_size = { size > 700 type = tactical_bomber } }
+			NOT = { num_of_military_factories < 76 }
+		} 
+	}
+
+	ai_strategy = { type = build_army id = tactical_bomber value = -100 }
+	ai_strategy = { type = equipment_production_factor id = tactical_bomber value = -1000	}
+	ai_strategy = { type = air_factory_balance value = -20 }
+}
+
+air_limit_tac_1 = {
+	enable = { 
+		num_of_military_factories > 75
+		has_deployed_air_force_size = { size > 1500 type = tactical_bomber }  
+	}
+	abort = { 
+		OR = {
+			NOT = { has_deployed_air_force_size = { size > 1800 type = tactical_bomber } }
+			NOT = { num_of_military_factories > 75 }
+		}
+	}
+
+	ai_strategy = { type = build_army id = tactical_bomber value = -100 }
+	ai_strategy = { type = equipment_production_factor id = tactical_bomber 		value = -1000	}
+	ai_strategy = { type = air_factory_balance value = -20 }
+}
+
+air_limit_fighter_0 = {
+	enable = { 
+		num_of_military_factories < 45
+		has_deployed_air_force_size = { size > 600 type = fighter }  
+	}
+	abort = { 
+		OR = {
+			NOT = { has_deployed_air_force_size = { size > 800 type = fighter  } }
+			NOT = { num_of_military_factories < 45 }
+		} 
+	}
+
+	ai_strategy = { type = build_army id = fighter  value = -100 }
+	ai_strategy = { type = equipment_production_factor id = fighter		value = -1000	}
+	ai_strategy = { type = air_factory_balance value = -25 }
+}
+
+air_limit_fighter_1 = {
+	enable = { 
+		num_of_military_factories < 58
+		has_deployed_air_force_size = { size > 1400 type = fighter }  
+	}
+	abort = { 
+		OR = {
+			NOT = { has_deployed_air_force_size = { size > 1200 type = fighter  } }
+			NOT = { num_of_military_factories < 58 }
+		} 
+	}
+
+	ai_strategy = { type = build_army id = fighter  value = -100 }
+	ai_strategy = { type = equipment_production_factor id = fighter		value = -1000	}	
+	ai_strategy = { type = air_factory_balance value = -25 }
+}
+
+air_limit_fighter_2 = {
+	enable = { 
+		num_of_military_factories < 75
+		has_deployed_air_force_size = { size > 1600 type = fighter  } 
+
+	}
+	abort = { 
+		OR = {
+			NOT = { has_deployed_air_force_size = { size > 1400 type = fighter  } }
+			NOT = { num_of_military_factories < 75 }
+		}
+	}
+	ai_strategy = { type = build_army id = fighter  value = -100 }
+	ai_strategy = { type = equipment_production_factor id = fighter value = -1000	}
+	ai_strategy = { type = air_factory_balance value = -20 }
+}
+
+air_limit_fighter_3 = {
+	enable = { 
+		num_of_military_factories < 90
+		has_deployed_air_force_size = { size > 2000 type = fighter }  
+	}
+	abort = { 
+		OR = {
+			NOT = { has_deployed_air_force_size = { size > 1800 type = fighter  } }
+			NOT = { num_of_military_factories < 90 }
+		} 
+	}
+
+	ai_strategy = { type = build_army id = fighter  value = -100 }
+	ai_strategy = { type = equipment_production_factor id = fighter		value = -1000	}	
+	ai_strategy = { type = air_factory_balance value = -20 }
+}
+
+air_limit_fighter_4 = {
+	enable = { 
+		num_of_military_factories > 100
+		has_deployed_air_force_size = { size > 2400 type = fighter  } 
+        NOT = { tag = SOV }	
+	}
+	abort = { 
+		OR = {
+			NOT = { has_deployed_air_force_size = { size > 2600 type = fighter  } }
+			NOT = { num_of_military_factories > 89 }
+		}
+	}
+	ai_strategy = { type = build_army id = fighter  value = -100 }
+	ai_strategy = { type = equipment_production_factor id = fighter value = -1000	}	
+	ai_strategy = { type = air_factory_balance value = -20 }
+}
+
+air_limit_fighter_sov = {
+        allowed = { OR = { tag = SOV tag = ENG tag = USA tag = GER } }
+	enable = { 
+		num_of_military_factories > 90
+		has_deployed_air_force_size = { size > 3600 type = fighter  } 
+	}
+	abort = { 
+		OR = {
+			NOT = { has_deployed_air_force_size = { size > 3200 type = fighter  } }
+			NOT = { num_of_military_factories > 90 }
+		}
+	}
+
+	ai_strategy = { type = build_army id = fighter  value = -100 }
+	ai_strategy = { type = equipment_production_factor id = fighter		value = -1000	}
+	ai_strategy = { type = air_factory_balance value = -15 }
+}
+air_limit_cas_0 = {
+	enable = { 
+		num_of_military_factories < 45
+		has_deployed_air_force_size = { size > 400 type = cas }  
+	}
+	abort = { 
+		OR = {
+			NOT = { has_deployed_air_force_size = { size > 200 type = cas  } }
+			NOT = { num_of_military_factories < 45 }
+		} 
+	}
+
+	ai_strategy = { type = build_army id = cas  value = -100 }
+	ai_strategy = { type = equipment_production_factor id = cas 		value = -1000	}	
+	ai_strategy = { type = air_factory_balance value = -16 }
+}
+
+air_limit_cas_1 = {
+	enable = { 
+		num_of_military_factories < 60
+		has_deployed_air_force_size = { size > 800 type = cas }  
+	}
+	abort = { 
+		OR = {
+			NOT = { has_deployed_air_force_size = { size > 600 type = cas  } }
+			NOT = { num_of_military_factories < 60 }
+		} 
+	}
+
+	ai_strategy = { type = build_army id = cas  value = -100 }
+	ai_strategy = { type = equipment_production_factor id = cas	value = -1000	}
+	ai_strategy = { type = air_factory_balance value = -16 }
+}
+
+air_limit_cas_2 = {
+	enable = { 
+		num_of_military_factories < 90
+		has_deployed_air_force_size = { size > 1000 type = cas  }  
+	}
+	abort = { 
+		OR = {
+			NOT = { has_deployed_air_force_size = { size > 800 type = cas  } }
+			NOT = { num_of_military_factories < 90 }
+		}
+	}
+
+	ai_strategy = { type = build_army id = cas  value = -100 }
+	ai_strategy = { type = equipment_production_factor id = cas		value = -1000	}
+	ai_strategy = { type = air_factory_balance value = -16 }
+}
+
+air_limit_cas_3 = {
+	enable = { 
+		num_of_military_factories > 89
+		has_deployed_air_force_size = { size > 1200 type = cas  }  
+	}
+	abort = { 
+		OR = {
+			NOT = { has_deployed_air_force_size = { size > 1000 type = cas  } }
+			NOT = { num_of_military_factories > 89 }
+		}
+	}
+
+	ai_strategy = { type = build_army id = cas  value = -100 }
+	ai_strategy = { type = equipment_production_factor id = cas		value = -1000	}
+	ai_strategy = { type = air_factory_balance value = -16 }
+}
+
+air_limit_strategic_bomber_0 = {
+    allowed = { OR = { tag = GER tag = USA } }
+	enable = { 
+		num_of_military_factories < 55
+		has_deployed_air_force_size = { size > 900 type = strategic_bomber }  
+	}
+	abort = { 
+		OR = {
+			NOT = { has_deployed_air_force_size = { size > 700 type = strategic_bomber  } }
+			NOT = { num_of_military_factories < 55 }
+		} 
+	}
+
+	ai_strategy = { type = build_army id = strategic_bomber  value = -100 }
+	ai_strategy = { type = equipment_production_factor id = strategic_bomber 	value = -300	}
+	ai_strategy = { type = air_factory_balance value = -20 }
+}
+
+air_limit_strategic_bomber_1 = {
+    allowed = { OR = { tag = GER tag = USA } }
+	enable = { 
+		num_of_military_factories < 85
+		has_deployed_air_force_size = { size > 1400 type = strategic_bomber }  
+	}
+	abort = { 
+		OR = {
+			NOT = { has_deployed_air_force_size = { size > 1000 type = strategic_bomber  } }
+			NOT = { num_of_military_factories < 85 }
+		} 
+	}
+
+	ai_strategy = { type = build_army id = strategic_bomber  value = -100 }
+	ai_strategy = { type = equipment_production_factor id = strategic_bomber 	value = -300	}
+	ai_strategy = { type = air_factory_balance value = -20 }
+}
+
+air_limit_strategic_bomber_2 = {
+    allowed = { OR = { tag = GER tag = USA } }
+	enable = { 
+		num_of_military_factories < 130
+		has_deployed_air_force_size = { size > 2000 type = strategic_bomber }  
+	}
+	abort = { 
+		OR = {
+			NOT = { has_deployed_air_force_size = { size > 1550 type = strategic_bomber  } }
+			NOT = { num_of_military_factories < 130 }
+		} 
+	}
+
+	ai_strategy = { type = build_army id = strategic_bomber  value = -100 }
+	ai_strategy = { type = equipment_production_factor id = strategic_bomber 	value = -300	}
+	ai_strategy = { type = air_factory_balance value = -20 }
+}
+
+air_limit_strategic_bomber_3 = {
+    allowed = { OR = { tag = GER tag = USA } }
+	enable = { 
+		num_of_military_factories > 129
+		has_deployed_air_force_size = { size > 2700 type = strategic_bomber  }  
+	}
+	abort = { 
+		OR = {
+			NOT = { has_deployed_air_force_size = { size > 2100 type = strategic_bomber  } }
+			NOT = { num_of_military_factories > 129 }
+		}
+	}
+
+	ai_strategy = { type = build_army id = strategic_bomber  value = -100 }
+	ai_strategy = { type = equipment_production_factor id = strategic_bomber 		value = -1000	}
+	ai_strategy = { type = air_factory_balance value = -20 }
+}
+
+air_limit_naval_bomber_1 = {
+	enable = { 
+		num_of_military_factories < 56
+		has_deployed_air_force_size = { size > 800 type = naval_bomber }  
+	}
+	abort = { 
+		OR = {
+			NOT = { has_deployed_air_force_size = { size > 650 type = naval_bomber  } }
+			NOT = { num_of_military_factories < 56 }
+		} 
+	}
+
+	ai_strategy = { type = build_army id = naval_bomber  value = -50 }
+	ai_strategy = { type = equipment_production_factor id = naval_bomber 		value = -1000	}
+	ai_strategy = { type = air_factory_balance value = -12 }
+}
+
+air_limit_naval_bomber_2 = {
+	enable = { 
+		num_of_military_factories < 115
+		has_deployed_air_force_size = { size > 1600 type = naval_bomber  }  
+	}
+	abort = { 
+		OR = {
+			NOT = { has_deployed_air_force_size = { size > 1300 type = naval_bomber  } }
+			NOT = { num_of_military_factories < 115 }
+		}
+	}
+
+	ai_strategy = { type = build_army id = naval_bomber  value = -50 }
+	ai_strategy = { type = equipment_production_factor id = naval_bomber 		value = -1000	}
+	ai_strategy = { type = air_factory_balance value = -12 }
+}
+
+air_limit_naval_bomber_3 = {
+	enable = { 
+		num_of_military_factories > 115
+		has_deployed_air_force_size = { size > 2000 type = naval_bomber }  
+	}
+	abort = { 
+		OR = {
+			NOT = { has_deployed_air_force_size = { size > 1500 type = naval_bomber  } }
+			NOT = { num_of_military_factories < 115 }
+		} 
+	}
+
+	ai_strategy = { type = build_army id = naval_bomber  value = -50 }
+	ai_strategy = { type = equipment_production_factor id = naval_bomber 		value = -1000	}
+	ai_strategy = { type = air_factory_balance value = -12 }
+}
+default_spyplanes_production = {
+	enable = {
+		has_tech = scout_plane1
+		is_major = yes
+		#OR = {
+		#	has_equipment = {
+		#		scout_plane_equipment > 50
+		#	}
+		#	has_deployed_air_force_size = {
+		#		size > 50
+		#		type = scout_plane
+		#	}
+		#}
+	}
+
+	abort_when_not_enabled = yes
+
+	ai_strategy = {
+		type = unit_ratio
+		id = scout_plane
+		value = 25
+	}
+
+	ai_strategy = {
+		type = equipment_production_factor
+		id = scout_plane
+		value = 25
+	}
+
+	ai_strategy = {
+		type = equipment_production_min_factories
+		id = scout_plane
+		value = 1
+	}
+}
+
+############################################################################################################
+#	Expert AI mod - naval strategies
+############################################################################################################
+
+### strike forces
+
+EAI_USA_strike_force_pacific = {
+	allowed = { tag = USA }
+	enable = {
+		NOT = {
+			any_home_area_neighbor_country = {
+				has_war_with = ROOT
+			}
+		}
+
+		any_enemy_country = {
+			capital_scope = { OR = { is_on_continent = asia is_on_continent = pacific is_on_continent = oceania } }
+		}
+	}
+
+	abort_when_not_enabled = yes
+
+	ai_strategy = { type = strike_force_home_base id = 105 }
+}
+
+EAI_USA_strike_force_europe = {
+	allowed = { tag = USA }
+	enable = {
+		NOT = {
+			any_home_area_neighbor_country = {
+				has_war_with = ROOT
+			}
+		}
+
+		any_enemy_country = {
+			capital_scope = { is_on_continent = europe }
+		}
+	}
+
+	abort_when_not_enabled = yes
+
+	ai_strategy = { type = strike_force_home_base id = 18 }
+}
+
+### avoidance
+
+EAI_axis_avoid_ENG = {
+	enable = {
+		has_war_with = ENG
+
+		NOT = { ENG = { has_capitulated = yes } }
+
+		alliance_naval_strength_ratio < 1.0
+
+		NOT = { ENG = { has_country_flag = EAI_naval_invasion_from_@ROOT } }
+	}
+	
+	abort_when_not_enabled = yes
+	
+	ai_strategy = { type = naval_avoid_region id = 18 value = 5000 }
+	ai_strategy = { type = naval_avoid_region id = 16 value = 5000 }
+	ai_strategy = { type = naval_avoid_region id = 43 value = 5000 }
+}
+
+EAI_ITA_avoid_ETH = {
+	enable = {
+		has_war = yes
+		original_tag = ITA 
+		enemies_naval_strength_ratio > 1.0 
+		NOT = { ETH = { has_country_flag = EAI_naval_invasion_from_ITA } }
+	}
+	abort_when_not_enabled = yes
+
+	ai_strategy = { type = naval_avoid_region id = 47 value = 500 }
+	ai_strategy = { type = naval_avoid_region id = 48 value = 500 }
+	ai_strategy = { type = naval_avoid_region id = 61 value = 500 }
+	ai_strategy = { type = naval_avoid_region id = 62 value = 500 }
+	ai_strategy = { type = naval_avoid_region id = 65 value = 500 }
+	ai_strategy = { type = naval_avoid_region id = 103 value = 500 }
+	ai_strategy = { type = naval_avoid_region id = 102 value = 500 }
+	ai_strategy = { type = naval_avoid_region id = 104 value = 500 }
+}
+
+EAI_allies_avoid_GER = {
+	enable = {
+		has_war_with = GER
+
+		NOT = { GER = { has_capitulated = yes } }
+
+		alliance_naval_strength_ratio < 8
+
+		NOT = { GER = { has_country_flag = EAI_naval_invasion_from_@ROOT } }
+
+		NOT = { # unblock if holding these states
+			19 = { CONTROLLER = { has_war_with = GER } }
+			23 = { CONTROLLER = { has_war_with = GER } }
+			30 = { CONTROLLER = { has_war_with = GER } }
+			14 = { CONTROLLER = { has_war_with = GER } }
+			15 = { CONTROLLER = { has_war_with = GER } }
+			785 = { CONTROLLER = { has_war_with = GER } }
+			29 = { CONTROLLER = { has_war_with = GER } }
+			6 = { CONTROLLER = { has_war_with = GER } }
+			35 = { CONTROLLER = { has_war_with = GER } }
+			7 = { CONTROLLER = { has_war_with = GER } }
+			36 = { CONTROLLER = { has_war_with = GER } }
+			56 = { CONTROLLER = { has_war_with = GER } }
+			59 = { CONTROLLER = { has_war_with = GER } }
+			58 = { CONTROLLER = { has_war_with = GER } }
+			99 = { CONTROLLER = { has_war_with = GER } }
+		}
+	}
+
+	abort_when_not_enabled = yes
+
+	ai_strategy = { type = naval_avoid_region id = 18 value = 500 }
+	ai_strategy = { type = naval_avoid_region id = 16 value = 50 }
+	ai_strategy = { type = naval_avoid_region id = 42 value = 500 }
+	ai_strategy = { type = naval_avoid_region id = 47 value = 50 }
+}
+
+EAI_allies_avoid_JAP = {
+	enable = {
+		has_war_with = JAP
+
+		NOT = { JAP = { has_capitulated = yes } }
+	}
+
+	abort_when_not_enabled = yes
+
+	ai_strategy = { type = naval_avoid_region id = 90 value = 50 }
+	ai_strategy = { type = naval_avoid_region id = 79 value = 50 }
+	ai_strategy = { type = naval_avoid_region id = 76 value = 50 }
+	ai_strategy = { type = naval_avoid_region id = 75 value = 50 }
+	ai_strategy = { type = naval_avoid_region id = 75 value = 50 }
+}
+
+EAI_allies_avoid_mediterranean = {
+	enable = { 
+		has_war_with = ITA
+
+		
+		NOT = { original_tag = USA } 
+
+		alliance_naval_strength_ratio < 8 
+		
+		NOT = { ITA = { has_country_flag = EAI_naval_invasion_from_@ROOT } }
+
+		NOT = { # unblock if holding these states
+			115 = { CONTROLLER = { has_war_with = ITA } }
+			156 = { CONTROLLER = { has_war_with = ITA } }
+			117 = { CONTROLLER = { has_war_with = ITA } }
+			157 = { CONTROLLER = { has_war_with = ITA } }
+			2 = { CONTROLLER = { has_war_with = ITA } }
+			162 = { CONTROLLER = { has_war_with = ITA } }
+			161 = { CONTROLLER = { has_war_with = ITA } }
+			158 = { CONTROLLER = { has_war_with = ITA } }
+			160 = { CONTROLLER = { has_war_with = ITA } }
+			736 = { CONTROLLER = { has_war_with = ITA } }
+		}
+	}
+	
+	abort_when_not_enabled = yes
+
+	ai_strategy = { type = naval_avoid_region id = 68 value = 50 }
+	ai_strategy = { type = naval_avoid_region id = 168 value = 500 }
+	ai_strategy = { type = naval_avoid_region id = 169 value = 500 }
+	ai_strategy = { type = naval_avoid_region id = 29 value = 50 }
+	ai_strategy = { type = naval_avoid_region id = 69 value = 50 }
+	ai_strategy = { type = naval_avoid_region id = 100 value = 50 }
+}
+
+EAI_allies_avoid_baltic = {
+	enable = { 
+		has_war = yes
+		OR = { has_war_with = SOV has_war_with = GER } 
+		NOT = { 58 = { CONTROLLER = { is_in_faction_with = ENG } } }
+	}
+	abort_when_not_enabled = yes
+
+	ai_strategy = { type = naval_avoid_region id = 206 value = 5000 }
+	ai_strategy = { type = naval_avoid_region id = 9 value = 5000 }
+	ai_strategy = { type = naval_avoid_region id = 173 value = 5000 }
+}
+
+EAI_axis_avoid_mediterranean = {
+	enable = { 
+		has_war_with = ENG
+		alliance_naval_strength_ratio < 2 
+		OR = {
+			NOT = { # gibraltar
+				118 = { CONTROLLER = { is_in_faction_with = ROOT } }
+				290 = { CONTROLLER = { is_in_faction_with = ROOT } }
+			}
+			NOT = { # suez
+				446 = { CONTROLLER = { is_in_faction_with = ROOT } }
+				453 = { CONTROLLER = { is_in_faction_with = ROOT } }
+			}
+		}
+	}
+	abort_when_not_enabled = yes
+
+	ai_strategy = { type = naval_avoid_region id = 68 value = 50 }
+	ai_strategy = { type = naval_avoid_region id = 169 value = 50 }
+	ai_strategy = { type = naval_avoid_region id = 69 value = 50 }
+	ai_strategy = { type = naval_avoid_region id = 100 value = 50 }
+}
+
+EAI_axis_avoid_mediterranean_2 = {
+	enable = { 
+		has_war_with = ENG
+		alliance_naval_strength_ratio < 2 		
+		OR = {
+			452 = { CONTROLLER = { is_in_faction_with = ROOT } }
+			447 = { CONTROLLER = { is_in_faction_with = ROOT } }
+			446 = { CONTROLLER = { is_in_faction_with = ROOT } }
+			453 = { CONTROLLER = { is_in_faction_with = ROOT } }
+		}
+	}
+	abort_when_not_enabled = yes
+
+	ai_strategy = { type = naval_avoid_region id = 69 value = 500 }
+}
+
+EAI_JAP_avoid_trade_routes_to_atlantic = {
+	enable = { 
+		has_war = yes
+		original_tag = ITA 
+	}
+	abort_when_not_enabled = yes
+
+	ai_strategy = { type = naval_avoid_region id = 65 value = 50 }
+	ai_strategy = { type = naval_avoid_region id = 107 value = 50 }
+	ai_strategy = { type = naval_avoid_region id = 63 value = 50 }
+}
+
+###
+
+EAI_avoid_borneo = {
+	enable = { 
+		has_war = yes
+		OR = {
+			159 = { CONTROLLER = { has_war_with = ROOT } }
+			187 = { CONTROLLER = { has_war_with = ROOT } }
+			167 = { CONTROLLER = { has_war_with = ROOT } }
+		}
+	}
+	abort_when_not_enabled = yes
+
+	ai_strategy = { type = naval_avoid_region id = 93 value = 50 }
+	ai_strategy = { type = naval_avoid_region id = 72 value = 50 }
+	ai_strategy = { type = naval_avoid_region id = 91 value = 50 }
+	ai_strategy = { type = naval_avoid_region id = 80 value = 50 }
+}
+
+EAI_avoid_philippines = {
+	enable = { 
+		has_war = yes
+		160 = { CONTROLLER = { has_war_with = ROOT } }
+	}
+	abort_when_not_enabled = yes
+
+	ai_strategy = { type = naval_avoid_region id = 78 value = 50 }
+	ai_strategy = { type = naval_avoid_region id = 75 value = 50 }
+	ai_strategy = { type = naval_avoid_region id = 80 value = 50 }
+}
+
+EAI_avoid_midway = {
+	enable = { 
+		has_war = yes
+		631 = { CONTROLLER = { has_war_with = ROOT } }
+	}
+	abort_when_not_enabled = yes
+
+	ai_strategy = { type = naval_avoid_region id = 95 value = 50 }
+}
+
+EAI_avoid_hawaii = {
+	enable = { 
+		has_war = yes
+		629 = { CONTROLLER = { has_war_with = ROOT } }
+	}
+	abort_when_not_enabled = yes
+
+	ai_strategy = { type = naval_avoid_region id = 105 value = 50 }
+}
+
+EAI_avoid_line = {
+	enable = {
+		has_war = yes
+		727 = { CONTROLLER = { has_war_with = ROOT } }
+	}
+	abort_when_not_enabled = yes
+
+	ai_strategy = { type = naval_avoid_region id = 172 value = 50 }
+}
+
+EAI_avoid_tahiti = {
+	enable = { 
+		has_war = yes
+		641 = { CONTROLLER = { has_war_with = ROOT } }
+	}
+	abort_when_not_enabled = yes
+
+	ai_strategy = { type = naval_avoid_region id = 179 value = 50 }
+}
+
+EAI_avoid_fiji = {
+	enable = { 
+		has_war = yes
+		OR = {
+			726 = { CONTROLLER = { has_war_with = ROOT } }
+			636 = { CONTROLLER = { has_war_with = ROOT } }
+		}
+	}
+	abort_when_not_enabled = yes
+
+	ai_strategy = { type = naval_avoid_region id = 178 value = 50 }
+}
+
+EAI_avoid_zealand = {
+	enable = { 
+		has_war = yes
+		157 = { CONTROLLER = { has_war_with = ROOT } }
+	}
+	abort_when_not_enabled = yes
+
+	ai_strategy = { type = naval_avoid_region id = 86 value = 50 }
+}
+
+EAI_avoid_iwo_jima = {
+	enable = { 
+		has_war = yes
+		OR = {
+			645 = { CONTROLLER = { has_war_with = ROOT } }
+			648 = { CONTROLLER = { has_war_with = ROOT } }
+			646 = { CONTROLLER = { has_war_with = ROOT } }
+		}
+	}
+	abort_when_not_enabled = yes
+
+	ai_strategy = { type = naval_avoid_region id = 94 value = 50 }
+}
+
+### naval missions
+
+EAI_peace_time_naval_missions = {
+	enable = { has_war = no }
+	abort_when_not_enabled = yes
+
+	ai_strategy = { type = naval_mission_threshold id = "MISSION_PATROL" value = 50000 }
+	ai_strategy = { type = naval_mission_threshold id = "MISSION_STRIKE_FORCE" value = 50000 }
+	ai_strategy = { type = naval_mission_threshold id = "MISSION_CONVOY_ESCORT" value = 50000 }
+	ai_strategy = { type = naval_mission_threshold id = "MISSION_CONVOY_RAIDING" value = 50000 }
+}
+
+EAI_halt_sub_missions = {
+	enable = { has_country_flag = EAI_halt_sub_missions }
+	abort_when_not_enabled = yes
+
+	ai_strategy = { type = naval_mission_threshold id = "MISSION_CONVOY_RAIDING" value = 50000 }
+}
+
+EAI_conserve_fuel = {
+	enable = { is_major = yes fuel_ratio < 0.25 }
+	abort = { NOT = { fuel_ratio < 0.5 } }
+
+	ai_strategy = { type = naval_mission_threshold id = "MISSION_CONVOY_RAIDING" value = 200000 }
+	ai_strategy = { type = naval_mission_threshold id = "MISSION_MINES_PLANTING" value = 200000 }
+	ai_strategy = { type = naval_mission_threshold id = "MISSION_MINES_SWEEPING" value = 200000 }
+}
+
+EAI_conserve_fuel_JAP = {
+	allowed = { tag = JAP }
+	enable = { 
+		fuel_ratio < 0.50 
+		has_war = no 
+	}
+	abort = { 
+		NOT = { 
+			AND = { 
+				fuel_ratio < 0.75 
+				has_war = no 
+			} 
+		} 
+	}
+
+	ai_strategy = { type = naval_mission_threshold id = "MISSION_TRAINING" value = 200000 }
+}
+
+EAI_conserve_fuel_JAP_vs_CHI = {
+	allowed = { tag = JAP }
+	enable = { 
+		has_war_with = CHI
+		fuel_ratio < 0.8
+		alliance_naval_strength_ratio > 10
+	}
+	abort = { 
+		NOT = { 
+			AND = { 
+				has_war_with = CHI
+				fuel_ratio < 0.9 
+				alliance_naval_strength_ratio > 10
+			} 
+		} 
+	}
+
+	ai_strategy = { type = naval_mission_threshold id = "MISSION_MINES_PLANTING" value = 200000 }
+	ai_strategy = { type = naval_mission_threshold id = "MISSION_MINES_SWEEPING" value = 200000 }
+	ai_strategy = { type = naval_mission_threshold id = "MISSION_PATROL" value = 200000 }
+	ai_strategy = { type = naval_mission_threshold id = "MISSION_STRIKE_FORCE" value = 200000 }
+}
+
+EAI_invasion_blitz_JAP = {
+	allowed = { tag = JAP }
+	enable = { has_country_flag = EAI_invasion_blitz_JAP }
+	abort_when_not_enabled = yes
+
+	# ai_strategy = { type = naval_mission_threshold id = "MISSION_PATROL" value = 200000 }
+	# ai_strategy = { type = naval_mission_threshold id = "MISSION_STRIKE_FORCE" value = 200000 }
+	ai_strategy = { type = naval_mission_threshold id = "MISSION_CONVOY_RAIDING" value = 200000 }
+	ai_strategy = { type = naval_mission_threshold id = "MISSION_MINES_PLANTING" value = 200000 }
+	ai_strategy = { type = naval_mission_threshold id = "MISSION_MINES_SWEEPING" value = 200000 }
+}
+
+EAI_GER_naval_missions_early_war = {
+	allowed = { tag = GER }
+	enable = { 
+		FRA = {
+			has_war_with = GER
+			NOT = { has_capitulated = yes }
+			is_in_faction_with = ENG
+		}
+
+		alliance_naval_strength_ratio < 2
+
+		date < 1941.1.1
+	}
+	
+	abort_when_not_enabled = yes
+
+	ai_strategy = { type = naval_mission_threshold id = "MISSION_PATROL" value = 200000 }
+	ai_strategy = { type = naval_mission_threshold id = "MISSION_STRIKE_FORCE" value = 200000 }
+	ai_strategy = { type = naval_mission_threshold id = "MISSION_CONVOY_ESCORT" value = 200000 }
+}
+
+############################################################################ 
+#	scripted invasion AI
+############################################################################
+
+### special cases
+
+# JAP
+
+EAI_pacific_war_JAP = {
+	allowed = { tag = JAP }
+	enable = {
+		OR = { has_war_with = PHI focus_progress = { focus = JAP_secure_the_philippines progress > 0 } }
+	}
+	
+	abort_when_not_enabled = yes
+	
+	ai_strategy = { type = invade id = "PHI" value = 4000 }
+}
+
+EAI_pacific_war_JAP_2 = {
+	allowed = { tag = JAP }
+	enable = {
+		has_war_with = MAL
+	}
+	
+	abort_when_not_enabled = yes
+	
+	ai_strategy = { type = invade id = "MAL" value = 4000 }
+}
+
+EAI_pacific_war_JAP_3 = {
+	allowed = { tag = JAP }
+	enable = {
+		has_war_with = INS
+	}
+	
+	abort_when_not_enabled = yes
+	
+	ai_strategy = { type = invade id = "INS" value = 4000 }
+}
+
+EAI_pacific_war_JAP_4 = {
+	allowed = { tag = JAP }
+	enable = {
+		has_war_with = USA
+		
+		if = { limit = { has_war_with = INS } INS = { has_capitulated = yes } }
+		if = { limit = { has_war_with = MAL } MAL = { has_capitulated = yes } }
+		if = { limit = { has_war_with = PHI } PHI = { has_capitulated = yes } }
+	}
+	
+	abort_when_not_enabled = yes
+	
+	ai_strategy = { type = invade id = "USA" value = 4000 }
+}
+
+EAI_pacific_war_JAP_5 = {
+	allowed = { tag = JAP }
+	enable = {
+		has_war_with = USA
+
+		if = { limit = { has_war_with = PHI } PHI = { has_capitulated = yes } }
+
+		OR = {
+			638 = { CONTROLLER = { original_tag = USA } }
+			650 = { CONTROLLER = { original_tag = USA } }
+			632 = { CONTROLLER = { original_tag = USA } }
+		}
+	}
+	
+	abort_when_not_enabled = yes
+	
+	ai_strategy = { type = invade id = "USA" value = 4000 }
+}
+
+EAI_pacific_war_USA = {
+	allowed = { tag = USA }
+	enable = {
+		has_war_with = JAP
+	}
+	
+	abort_when_not_enabled = yes
+	
+	ai_strategy = { type = invade id = "JAP" value = 4000 }
+}
+
+EAI_naval_invasion = { 
+	enable = { always = yes }
+
+	ai_strategy = { type = invade id = "N00" value = 7000 }
+}

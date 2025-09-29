@@ -1,0 +1,393 @@
+AXIS_LEND_LEASE = {
+	allowed = {
+		tag = GER
+                date > 1940.6.1
+	}
+
+	enable = {
+		tag = GER
+	}
+
+	abort_when_not_enabled = yes
+
+	ai_strategy = {
+		type = send_lend_lease_desire
+		id = ITA
+		value = 30000
+	}
+	ai_strategy = { type = support id = ITA value = 500 }
+	ai_strategy = {
+		type = send_lend_lease_desire
+		id = HUN
+		value = 30000
+	}
+	ai_strategy = { type = support id = HUN value = 500 }
+	ai_strategy = {
+		type = send_lend_lease_desire
+		id = ROM
+		value = 30000
+	}
+	ai_strategy = { type = support id = ROM value = 500 }
+	ai_strategy = {
+		type = send_lend_lease_desire
+		id = FIN
+		value = 10000
+	}
+	ai_strategy = { type = support id = FIN value = 500 }
+
+}
+
+Commonwealth_LEND_LEASE = {
+	allowed = {
+		tag = ENG
+                date > 1940.3.1
+	}
+
+	enable = {
+		tag = ENG
+	}
+
+	abort_when_not_enabled = yes
+
+	ai_strategy = {
+		type = send_lend_lease_desire
+		id = CAN
+		value = 30000
+	}
+	ai_strategy = { type = support id = "CAN" value = 500 }
+	ai_strategy = {
+		type = send_lend_lease_desire
+		id = SAF
+		value = 30000
+	}
+	ai_strategy = { type = support id = "SAF" value = 500 }
+	ai_strategy = {
+		type = send_lend_lease_desire
+		id = NZL
+		value = 30000
+	}
+	ai_strategy = { type = support id = "NZL" value = 500 }
+	ai_strategy = {
+		type = send_lend_lease_desire
+		id = SAF
+		value = 10000
+	}
+	ai_strategy = { type = support id = "SAF" value = 500 }
+
+}
+
+GER_my_precisioussss1 = {
+	allowed = {
+		tag = GER
+	}
+
+	enable = {
+		tag = GER
+	}
+
+	abort_when_not_enabled = yes
+
+	ai_strategy = {
+		type = send_lend_lease_desire
+		id = MAN
+		value = -9999
+	}
+	ai_strategy = {
+		type = send_lend_lease_desire
+		id = CHI
+		value = -9999
+	}
+	ai_strategy = {
+		type = send_lend_lease_desire
+		id = YUN
+		value = -9999
+	}
+	ai_strategy = {
+		type = send_lend_lease_desire
+		id = SHX
+		value = -9999
+	}
+	ai_strategy = {
+		type = send_lend_lease_desire
+		id = XSM
+		value = -9999
+	}
+	ai_strategy = {
+		type = send_lend_lease_desire
+		id = SIK
+		value = -9999
+	}	
+}
+GER_LEND_LEASE = {
+	allowed = {
+		tag = GER
+	}
+
+	enable = {
+		tag = GER
+	}
+
+	abort_when_not_enabled = yes
+
+	ai_strategy = {
+		type = send_lend_lease_desire
+		id = HUN
+		value = 30000
+	}
+	ai_strategy = { type = support id = "HUN" value = 500 }
+	ai_strategy = {
+		type = send_lend_lease_desire
+		id = ROM
+		value = 30000
+	}
+	ai_strategy = { type = support id = "ROM" value = 500 }
+	ai_strategy = {
+		type = send_lend_lease_desire
+		id = ITA
+		value = 30000
+	}
+	ai_strategy = { type = support id = "ITA" value = 500 }
+	ai_strategy = {
+		type = send_lend_lease_desire
+		id = FIN
+		value = 10000
+	}
+	ai_strategy = { type = support id = "FIN" value = 500 }
+
+}
+ignore_the_Swiss = {
+	enable = {
+		tag = GER
+		country_exists = SWI
+		OR = {
+			has_war_with = SOV
+			AND = {
+				has_war_with = ENG
+				ENG = { has_capitulated = no }
+			}
+		}
+	}
+	abort = {
+		OR = { 
+			SOV = { has_capitulated = yes }
+			ENG = { has_capitulated = yes }
+			SOV = { exists = no }
+			SOV = { is_puppet = yes }
+			has_war_with = SWI
+			is_in_faction_with = SOV
+		}
+	}
+	
+	ai_strategy = {
+		type = ignore
+		id = "SWI"
+		value = 1000
+	}
+
+	ai_strategy = {
+		type = invade
+		id = "DEN"
+		value = -1000
+	}
+
+	ai_strategy = {
+		type = declare_war
+		id = "SWI"
+		value = -2000 
+	}
+}
+SOV_LEND_LEASE = {
+	allowed = {
+		tag = SOV
+	}
+
+	enable = {
+		tag = SOV
+	}
+
+	ai_strategy = {
+		type = send_lend_lease_desire
+		id = CHI
+		value = 1000
+	}
+	ai_strategy = { type = support id = "CHI" value = 100 }
+	ai_strategy = {
+		type = send_lend_lease_desire
+		id = PRC
+		value = 100
+	}
+	ai_strategy = { type = support id = "PRC" value = 100}
+
+
+}
+
+SOV_DONT_LEND_LEASE1 = {
+	allowed = {
+		tag = SOV
+	}
+
+	enable = {
+		tag = SOV
+                date > 1940.1.1
+	}
+
+	abort = {
+                date > 1945.1.1
+	}
+	ai_strategy = {
+		type = send_lend_lease_desire
+		id = CHI
+		value = -99999
+	}
+	ai_strategy = { type = support id = "CHI" value = -99999 }
+	ai_strategy = {
+		type = send_lend_lease_desire
+		id = PRC
+		value = -9999
+	}
+	ai_strategy = { type = support id = "PRC" value = -9999}
+
+}
+ENG_LEND_LEASE = {
+	allowed = {
+		tag = ENG
+	}
+
+	enable = {
+		tag = ENG
+                 date > 1938.1.1
+	}
+
+	abort_when_not_enabled = yes
+	ai_strategy = {
+		type = send_lend_lease_desire
+		id = CAN
+		value = 30000
+	}
+	ai_strategy = { type = support id = "CAN" value = 50 }
+	ai_strategy = {
+		type = send_lend_lease_desire
+		id = SOV
+		value = 30000
+	}
+	ai_strategy = { type = support id = "SOV" value = 500 }
+	ai_strategy = {
+		type = send_lend_lease_desire
+		id = AST
+		value = 10000
+	}
+	ai_strategy = { type = support id = "AST" value = 50 }
+	ai_strategy = {
+		type = send_lend_lease_desire
+		id = NZL
+		value = 10000
+	}
+	ai_strategy = { type = support id = "NZL" value = 50 }
+	ai_strategy = {
+		type = send_lend_lease_desire
+		id = SAF
+		value = 10000
+	}
+	ai_strategy = { type = support id = "SAF" value = 50 }
+
+}
+
+
+ENG_DONT_LEND_LEASE = {
+	allowed = {
+		tag = ENG
+	}
+
+	enable = {
+		tag = ENG
+	}
+
+	abort_when_not_enabled = yes
+
+	ai_strategy = {
+		type = send_lend_lease_desire
+		id = FIN
+		value = -99999
+	}
+	ai_strategy = {
+		type = send_lend_lease_desire
+		id = JAP
+		value = -99999
+	}
+	ai_strategy = {
+		type = send_lend_lease_desire
+		id = CHI
+		value = -30000
+	}
+
+}
+
+USA_LEND_LEASE = {
+	allowed = {
+		tag = USA
+	}
+
+	enable = {
+		tag = USA
+	}
+
+	abort_when_not_enabled = yes
+
+	ai_strategy = {
+		type = send_lend_lease_desire
+		id = ENG
+		value = 30000
+	}
+	ai_strategy = { type = support id = "ENG" value = 100 }
+	ai_strategy = {
+		type = send_lend_lease_desire
+		id = FRA
+		value = 30000
+	}
+	ai_strategy = { type = support id = "FRA" value = 100 }
+	ai_strategy = {
+		type = send_lend_lease_desire
+		id = CAN
+		value = 30000
+	}
+	ai_strategy = { type = support id = "CAN" value = 50 }
+	ai_strategy = {
+		type = send_lend_lease_desire
+		id = SOV
+		value = 30000
+	}
+	ai_strategy = { type = support id = "SOV" value = 5000 }
+	ai_strategy = {
+		type = send_lend_lease_desire
+		id = CHI
+		value = 10000
+	}
+	ai_strategy = { type = support id = "CHI" value = 20 }
+
+}
+
+USA_DONT_LEND_LEASE = {
+	allowed = {
+		tag = USA
+	}
+
+	enable = {
+		tag = USA
+	}
+
+	abort_when_not_enabled = yes
+
+	ai_strategy = {
+		type = send_lend_lease_desire
+		id = FIN
+		value = -99999
+	}
+	ai_strategy = {
+		type = send_lend_lease_desire
+		id = JAP
+		value = -99999
+	}
+
+}
+
+

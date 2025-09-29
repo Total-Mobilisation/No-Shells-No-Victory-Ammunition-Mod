@@ -1,0 +1,785 @@
+EAI_build_armies_fix = { # Something is blocking the AI from building armies in 1.11
+	enable = {
+		has_idea = days_ammo_30
+	}
+	abort_when_not_enabled = yes
+
+	ai_strategy = { type = force_build_armies value = 750 }
+}
+
+default_attack_rush_weak555 = { 
+	enable = {
+		has_idea = days_ammo_30
+	}
+	abort = {
+		NOT = {	has_idea = days_ammo_30 }
+	}
+	ai_strategy = {
+		type = front_control
+		ordertype = invasion
+		execute_order = yes
+		manual_attack = yes
+
+	}
+
+	ai_strategy = {
+		type = front_control
+		ordertype = front
+		execution_type = rush_weak
+		manual_attack = yes
+		execute_order = yes
+                priority = 1
+
+		country_trigger = {
+			OR = {
+				original_tag = GER
+				original_tag = ROM
+				original_tag = HUN
+				original_tag = ITA
+				original_tag = ENG
+				original_tag = FRA
+				original_tag = BEL
+				original_tag = HOL
+				original_tag = POL
+				original_tag = SPR
+				original_tag = SOV
+				original_tag = JAP
+				original_tag = CHI
+				original_tag = USA
+				original_tag = CAN
+				original_tag = GRE
+				original_tag = TUR
+				original_tag = FIN
+				original_tag = YUG
+				original_tag = SAF
+				original_tag = AST
+				original_tag = PHI
+				original_tag = SIA
+				original_tag = RAJ
+			}
+		}
+	}
+
+
+}
+
+default_attack_careful555 = { 
+	enable = {
+		has_idea = days_ammo_10
+	}
+	abort = {
+		NOT = {
+			original_tag = SPR
+			original_tag = SPD
+			original_tag = SPA
+		}
+		NOT = {	has_idea = days_ammo_10 }
+	}
+	ai_strategy = {
+		type = front_control
+		ordertype = invasion
+		execute_order = no
+		manual_attack = yes
+                priority = 9999
+
+	}
+
+	ai_strategy = {
+		type = build_army
+		id = cavalry
+		value = -300
+	}
+
+	ai_strategy = {
+		type = build_army
+		id = camelry
+		value = -300
+	}
+
+	ai_strategy = {
+		type = build_army
+		id = motorized
+		value = -300
+	}
+
+	ai_strategy = {
+		type = build_army
+		id = armored_car
+		value = -300
+	}
+
+	ai_strategy = {
+		type = build_army
+		id = mechanized
+		value = -300
+	}
+
+	ai_strategy = {
+		type = build_army
+		id = garrison
+		value = -300
+	}
+
+	ai_strategy = {
+		type = build_army
+		id = suppression
+		value = -300
+	}
+
+	ai_strategy = {
+		type = build_army
+		id = paratroopers
+		value = -300
+	}
+
+	ai_strategy = {
+		type = build_army
+		id = mountaineers
+		value = -300
+	}
+
+	ai_strategy = {
+		type = build_army
+		id = marines
+		value = -300
+	}
+
+	ai_strategy = {
+		type = build_army
+		id = armor
+		value = -300
+	}
+
+	ai_strategy = {
+		type = build_army
+		id = light_armor
+		value = -300
+	}
+
+	ai_strategy = {
+		type = build_army
+		id = heavy_armor
+		value = -300
+	}
+
+	ai_strategy = {
+		type = build_army
+		id = medium_armor
+		value = -300
+	}
+
+	ai_strategy = {
+		type = build_army
+		id = modern_armor
+		value = -300
+	}
+
+	ai_strategy = {
+		type = build_army
+		id = infantry
+		value = -300
+	}
+	ai_strategy = {
+
+		type = front_control
+		ordertype = front
+		execution_type = careful
+		execute_order = no
+		manual_attack = yes
+                priority = 9999
+
+		country_trigger = {
+			OR = {
+				original_tag = GER
+				original_tag = ROM
+				original_tag = HUN
+				original_tag = ITA
+				original_tag = ENG
+				original_tag = FRA
+				original_tag = BEL
+				original_tag = HOL
+				original_tag = POL
+				original_tag = SPR
+				original_tag = SOV
+				original_tag = JAP
+				original_tag = CHI
+				original_tag = USA
+				original_tag = CAN
+				original_tag = GRE
+				original_tag = TUR
+				original_tag = FIN
+				original_tag = YUG
+				original_tag = SAF
+				original_tag = AST
+				original_tag = PHI
+				original_tag = SIA
+				original_tag = RAJ
+			}
+		}
+	}
+
+}
+
+default_attack_rush_weak123 = { 
+	enable = {
+check_variable = { days_left_of_max_ammo_usage > 15 }	}
+	abort = {
+check_variable = { days_left_of_max_ammo_usage < 10 }	}
+	ai_strategy = {
+		type = front_control
+		ordertype = invasion
+		execute_order = yes
+		manual_attack = yes
+
+	}
+	ai_strategy = {
+		type = front_control
+		ordertype = front
+		execution_type = rush_weak
+		execute_order = yes
+		manual_attack = yes
+
+                priority = 1
+		country_trigger = {
+			OR = {
+				original_tag = GER
+				original_tag = ROM
+				original_tag = HUN
+				original_tag = ITA
+				original_tag = ENG
+				original_tag = FRA
+				original_tag = BEL
+				original_tag = HOL
+				original_tag = POL
+				original_tag = SPR
+				original_tag = SOV
+				original_tag = JAP
+				original_tag = CHI
+				original_tag = USA
+				original_tag = CAN
+				original_tag = GRE
+				original_tag = TUR
+				original_tag = FIN
+				original_tag = YUG
+				original_tag = SAF
+				original_tag = AST
+				original_tag = PHI
+				original_tag = SIA
+				original_tag = RAJ
+			}
+		}
+	}
+
+
+}
+
+default_attack_careful = { 
+	enable = {
+		NOT = {
+			original_tag = SPR
+			original_tag = SPD
+			original_tag = SPA
+		}
+check_variable = { days_left_of_max_ammo_usage < 10 }	}
+	abort = {
+check_variable = { days_left_of_max_ammo_usage > 15 }	}
+	ai_strategy = {
+		type = front_control
+		ordertype = invasion
+		execute_order = no
+		manual_attack = yes
+
+	}
+
+	ai_strategy = {
+		type = build_army
+		id = cavalry
+		value = -300
+	}
+
+	ai_strategy = {
+		type = build_army
+		id = camelry
+		value = -300
+	}
+
+	ai_strategy = {
+		type = build_army
+		id = motorized
+		value = -300
+	}
+
+	ai_strategy = {
+		type = build_army
+		id = armored_car
+		value = -300
+	}
+
+	ai_strategy = {
+		type = build_army
+		id = mechanized
+		value = -300
+	}
+
+	ai_strategy = {
+		type = build_army
+		id = garrison
+		value = -300
+	}
+
+	ai_strategy = {
+		type = build_army
+		id = suppression
+		value = -300
+	}
+
+	ai_strategy = {
+		type = build_army
+		id = paratroopers
+		value = -300
+	}
+
+	ai_strategy = {
+		type = build_army
+		id = mountaineers
+		value = -300
+	}
+
+	ai_strategy = {
+		type = build_army
+		id = marines
+		value = -300
+	}
+
+	ai_strategy = {
+		type = build_army
+		id = armor
+		value = -300
+	}
+
+	ai_strategy = {
+		type = build_army
+		id = light_armor
+		value = -300
+	}
+
+	ai_strategy = {
+		type = build_army
+		id = heavy_armor
+		value = -300
+	}
+
+	ai_strategy = {
+		type = build_army
+		id = medium_armor
+		value = -300
+	}
+
+	ai_strategy = {
+		type = build_army
+		id = modern_armor
+		value = -300
+	}
+
+	ai_strategy = {
+		type = build_army
+		id = infantry
+		value = -300
+	}
+	ai_strategy = {
+    priority = 1
+
+		type = front_control
+		ordertype = front
+		execution_type = careful
+		execute_order = no
+		manual_attack = no
+
+		country_trigger = {
+			OR = {
+				original_tag = GER
+				original_tag = ROM
+				original_tag = HUN
+				original_tag = ITA
+				original_tag = ENG
+				original_tag = FRA
+				original_tag = BEL
+				original_tag = HOL
+				original_tag = POL
+				original_tag = SPR
+				original_tag = SOV
+				original_tag = JAP
+				original_tag = CHI
+				original_tag = USA
+				original_tag = CAN
+				original_tag = GRE
+				original_tag = TUR
+				original_tag = FIN
+				original_tag = YUG
+				original_tag = SAF
+				original_tag = AST
+				original_tag = PHI
+				original_tag = SIA
+				original_tag = RAJ
+			}
+		}
+	}
+
+}
+default_stockpile_management = {
+	enable = {
+		num_divisions > 150
+	}
+
+	abort = {
+		num_divisions < 130
+	}
+
+	ai_strategy = {
+		type = equipment_stockpile_surplus_ratio
+		value = 35 # double base stockpile #from 25 to 35
+	}
+}
+air_limit_tac_0 = {
+	enable = { 
+		num_of_military_factories < 76
+		has_deployed_air_force_size = { size > 600 type = tactical_bomber }  
+	}
+	abort = { 
+		OR = {
+			NOT = { has_deployed_air_force_size = { size > 700 type = tactical_bomber } }
+			NOT = { num_of_military_factories < 76 }
+		} 
+	}
+
+	ai_strategy = { type = build_army id = tactical_bomber value = -100 }
+	ai_strategy = { type = equipment_production_factor id = tactical_bomber value = -1000	}
+	ai_strategy = { type = air_factory_balance value = -20 }
+}
+
+air_limit_tac_1 = {
+	enable = { 
+		num_of_military_factories > 75
+		has_deployed_air_force_size = { size > 1500 type = tactical_bomber }  
+	}
+	abort = { 
+		OR = {
+			NOT = { has_deployed_air_force_size = { size > 1800 type = tactical_bomber } }
+			NOT = { num_of_military_factories > 75 }
+		}
+	}
+
+	ai_strategy = { type = build_army id = tactical_bomber value = -100 }
+	ai_strategy = { type = equipment_production_factor id = tactical_bomber 		value = -1000	}
+	ai_strategy = { type = air_factory_balance value = -20 }
+}
+
+air_limit_fighter_0 = {
+	enable = { 
+		num_of_military_factories < 45
+		has_deployed_air_force_size = { size > 600 type = fighter }  
+	}
+	abort = { 
+		OR = {
+			NOT = { has_deployed_air_force_size = { size > 800 type = fighter  } }
+			NOT = { num_of_military_factories < 45 }
+		} 
+	}
+
+	ai_strategy = { type = build_army id = fighter  value = -100 }
+	ai_strategy = { type = equipment_production_factor id = fighter		value = -1000	}
+	ai_strategy = { type = air_factory_balance value = -25 }
+}
+
+air_limit_fighter_1 = {
+	enable = { 
+		num_of_military_factories < 58
+		has_deployed_air_force_size = { size > 1400 type = fighter }  
+	}
+	abort = { 
+		OR = {
+			NOT = { has_deployed_air_force_size = { size > 1200 type = fighter  } }
+			NOT = { num_of_military_factories < 58 }
+		} 
+	}
+
+	ai_strategy = { type = build_army id = fighter  value = -100 }
+	ai_strategy = { type = equipment_production_factor id = fighter		value = -1000	}	
+	ai_strategy = { type = air_factory_balance value = -25 }
+}
+
+air_limit_fighter_2 = {
+	enable = { 
+		num_of_military_factories < 75
+		has_deployed_air_force_size = { size > 1600 type = fighter  } 
+
+	}
+	abort = { 
+		OR = {
+			NOT = { has_deployed_air_force_size = { size > 1400 type = fighter  } }
+			NOT = { num_of_military_factories < 75 }
+		}
+	}
+	ai_strategy = { type = build_army id = fighter  value = -100 }
+	ai_strategy = { type = equipment_production_factor id = fighter value = -1000	}
+	ai_strategy = { type = air_factory_balance value = -20 }
+}
+
+air_limit_fighter_3 = {
+	enable = { 
+		num_of_military_factories < 90
+		has_deployed_air_force_size = { size > 2000 type = fighter }  
+	}
+	abort = { 
+		OR = {
+			NOT = { has_deployed_air_force_size = { size > 1800 type = fighter  } }
+			NOT = { num_of_military_factories < 90 }
+		} 
+	}
+
+	ai_strategy = { type = build_army id = fighter  value = -100 }
+	ai_strategy = { type = equipment_production_factor id = fighter		value = -1000	}	
+	ai_strategy = { type = air_factory_balance value = -20 }
+}
+
+air_limit_fighter_4 = {
+	enable = { 
+		num_of_military_factories > 100
+		has_deployed_air_force_size = { size > 2400 type = fighter  } 
+        NOT = { tag = SOV }	
+	}
+	abort = { 
+		OR = {
+			NOT = { has_deployed_air_force_size = { size > 2600 type = fighter  } }
+			NOT = { num_of_military_factories > 89 }
+		}
+	}
+	ai_strategy = { type = build_army id = fighter  value = -100 }
+	ai_strategy = { type = equipment_production_factor id = fighter value = -1000	}	
+	ai_strategy = { type = air_factory_balance value = -20 }
+}
+
+air_limit_fighter_sov = {
+        allowed = { OR = { tag = SOV tag = ENG tag = USA tag = GER } }
+	enable = { 
+		num_of_military_factories > 90
+		has_deployed_air_force_size = { size > 3600 type = fighter  } 
+	}
+	abort = { 
+		OR = {
+			NOT = { has_deployed_air_force_size = { size > 3200 type = fighter  } }
+			NOT = { num_of_military_factories > 90 }
+		}
+	}
+
+	ai_strategy = { type = build_army id = fighter  value = -100 }
+	ai_strategy = { type = equipment_production_factor id = fighter		value = -1000	}
+	ai_strategy = { type = air_factory_balance value = -15 }
+}
+
+air_limit_heavy_fighter_sov = {
+        allowed = { OR = { tag = SOV tag = ENG tag = USA } }
+	enable = { 
+		num_of_military_factories > 90
+		has_deployed_air_force_size = { size > 1000 type = fighter  } 
+	}
+	abort = { 
+		OR = {
+			NOT = { has_deployed_air_force_size = { size > 800 type = fighter  } }
+			NOT = { num_of_military_factories > 90 }
+		}
+	}
+
+	ai_strategy = { type = equipment_variant_production_factor id = heavy_fighter_equipment      value = -300 }
+}
+
+air_limit_cas_0 = {
+	enable = { 
+		num_of_military_factories < 45
+		has_deployed_air_force_size = { size > 400 type = cas }  
+	}
+	abort = { 
+		OR = {
+			NOT = { has_deployed_air_force_size = { size > 200 type = cas  } }
+			NOT = { num_of_military_factories < 45 }
+		} 
+	}
+
+	ai_strategy = { type = build_army id = cas  value = -100 }
+	ai_strategy = { type = equipment_production_factor id = cas 		value = -1000	}	
+	ai_strategy = { type = air_factory_balance value = -16 }
+}
+
+air_limit_cas_1 = {
+	enable = { 
+		num_of_military_factories < 60
+		has_deployed_air_force_size = { size > 800 type = cas }  
+	}
+	abort = { 
+		OR = {
+			NOT = { has_deployed_air_force_size = { size > 600 type = cas  } }
+			NOT = { num_of_military_factories < 60 }
+		} 
+	}
+
+	ai_strategy = { type = build_army id = cas  value = -100 }
+	ai_strategy = { type = equipment_production_factor id = cas	value = -1000	}
+	ai_strategy = { type = air_factory_balance value = -16 }
+}
+
+air_limit_cas_2 = {
+	enable = { 
+		num_of_military_factories < 90
+		has_deployed_air_force_size = { size > 1000 type = cas  }  
+	}
+	abort = { 
+		OR = {
+			NOT = { has_deployed_air_force_size = { size > 800 type = cas  } }
+			NOT = { num_of_military_factories < 90 }
+		}
+	}
+
+	ai_strategy = { type = build_army id = cas  value = -100 }
+	ai_strategy = { type = equipment_production_factor id = cas		value = -1000	}
+	ai_strategy = { type = air_factory_balance value = -16 }
+}
+
+air_limit_cas_3 = {
+	enable = { 
+		num_of_military_factories > 89
+		has_deployed_air_force_size = { size > 1200 type = cas  }  
+	}
+	abort = { 
+		OR = {
+			NOT = { has_deployed_air_force_size = { size > 1000 type = cas  } }
+			NOT = { num_of_military_factories > 89 }
+		}
+	}
+
+	ai_strategy = { type = build_army id = cas  value = -100 }
+	ai_strategy = { type = equipment_production_factor id = cas		value = -1000	}
+	ai_strategy = { type = air_factory_balance value = -16 }
+}
+
+air_limit_strategic_bomber_0 = {
+    allowed = { OR = { tag = GER tag = USA } }
+	enable = { 
+		num_of_military_factories < 55
+		has_deployed_air_force_size = { size > 900 type = strategic_bomber }  
+	}
+	abort = { 
+		OR = {
+			NOT = { has_deployed_air_force_size = { size > 700 type = strategic_bomber  } }
+			NOT = { num_of_military_factories < 55 }
+		} 
+	}
+
+	ai_strategy = { type = build_army id = strategic_bomber  value = -100 }
+	ai_strategy = { type = equipment_production_factor id = strategic_bomber 	value = -300	}
+	ai_strategy = { type = air_factory_balance value = -20 }
+}
+
+air_limit_strategic_bomber_1 = {
+    allowed = { OR = { tag = GER tag = USA } }
+	enable = { 
+		num_of_military_factories < 85
+		has_deployed_air_force_size = { size > 1400 type = strategic_bomber }  
+	}
+	abort = { 
+		OR = {
+			NOT = { has_deployed_air_force_size = { size > 1000 type = strategic_bomber  } }
+			NOT = { num_of_military_factories < 85 }
+		} 
+	}
+
+	ai_strategy = { type = build_army id = strategic_bomber  value = -100 }
+	ai_strategy = { type = equipment_production_factor id = strategic_bomber 	value = -300	}
+	ai_strategy = { type = air_factory_balance value = -20 }
+}
+
+air_limit_strategic_bomber_2 = {
+    allowed = { OR = { tag = GER tag = USA } }
+	enable = { 
+		num_of_military_factories < 130
+		has_deployed_air_force_size = { size > 2000 type = strategic_bomber }  
+	}
+	abort = { 
+		OR = {
+			NOT = { has_deployed_air_force_size = { size > 1550 type = strategic_bomber  } }
+			NOT = { num_of_military_factories < 130 }
+		} 
+	}
+
+	ai_strategy = { type = build_army id = strategic_bomber  value = -100 }
+	ai_strategy = { type = equipment_production_factor id = strategic_bomber 	value = -300	}
+	ai_strategy = { type = air_factory_balance value = -20 }
+}
+
+air_limit_strategic_bomber_3 = {
+    allowed = { OR = { tag = GER tag = USA } }
+	enable = { 
+		num_of_military_factories > 129
+		has_deployed_air_force_size = { size > 2700 type = strategic_bomber  }  
+	}
+	abort = { 
+		OR = {
+			NOT = { has_deployed_air_force_size = { size > 2100 type = strategic_bomber  } }
+			NOT = { num_of_military_factories > 129 }
+		}
+	}
+
+	ai_strategy = { type = build_army id = strategic_bomber  value = -100 }
+	ai_strategy = { type = equipment_production_factor id = strategic_bomber 		value = -1000	}
+	ai_strategy = { type = air_factory_balance value = -20 }
+}
+
+air_limit_naval_bomber_1 = {
+	enable = { 
+		num_of_military_factories < 56
+		has_deployed_air_force_size = { size > 800 type = naval_bomber }  
+	}
+	abort = { 
+		OR = {
+			NOT = { has_deployed_air_force_size = { size > 650 type = naval_bomber  } }
+			NOT = { num_of_military_factories < 56 }
+		} 
+	}
+
+	ai_strategy = { type = build_army id = naval_bomber  value = -50 }
+	ai_strategy = { type = equipment_production_factor id = naval_bomber 		value = -1000	}
+	ai_strategy = { type = air_factory_balance value = -12 }
+}
+
+air_limit_naval_bomber_2 = {
+	enable = { 
+		num_of_military_factories < 115
+		has_deployed_air_force_size = { size > 1600 type = naval_bomber  }  
+	}
+	abort = { 
+		OR = {
+			NOT = { has_deployed_air_force_size = { size > 1300 type = naval_bomber  } }
+			NOT = { num_of_military_factories < 115 }
+		}
+	}
+
+	ai_strategy = { type = build_army id = naval_bomber  value = -50 }
+	ai_strategy = { type = equipment_production_factor id = naval_bomber 		value = -1000	}
+	ai_strategy = { type = air_factory_balance value = -12 }
+}
+
+air_limit_naval_bomber_3 = {
+	enable = { 
+		num_of_military_factories > 115
+		has_deployed_air_force_size = { size > 2000 type = naval_bomber }  
+	}
+	abort = { 
+		OR = {
+			NOT = { has_deployed_air_force_size = { size > 1500 type = naval_bomber  } }
+			NOT = { num_of_military_factories < 115 }
+		} 
+	}
+
+	ai_strategy = { type = build_army id = naval_bomber  value = -50 }
+	ai_strategy = { type = equipment_production_factor id = naval_bomber 		value = -1000	}
+	ai_strategy = { type = air_factory_balance value = -12 }
+}
