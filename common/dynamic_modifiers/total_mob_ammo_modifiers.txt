@@ -29,6 +29,8 @@
 ammo_adjustment_modifier = {
     industrial_capacity_factory = ai_mil_ammo_production_adjustment
 
+    army_org_factor = org_ammo_malus_offset
+    
     army_attack_factor = artillery_ammo_malus
     army_infantry_attack_factor = infantry_ammo_malus_offset
     motorized_attack_factor = infantry_ammo_malus_offset

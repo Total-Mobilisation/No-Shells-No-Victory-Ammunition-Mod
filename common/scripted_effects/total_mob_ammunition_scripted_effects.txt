@@ -212,6 +212,8 @@ total_mob_ammunition_calculation_effects = {
 
 		#Impact stats
 		set_variable = { artillery_ammo_malus = ammo_malus }
+		set_variable = { org_ammo_malus_offset = ammo_malus }
+		multiply_variable = { org_ammo_malus_offset = 0.5 }
 		set_variable = { infantry_ammo_malus_offset = ammo_malus }
 		multiply_variable = { infantry_ammo_malus_offset = -0.5 }
 	}
