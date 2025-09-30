@@ -6,17 +6,17 @@ dont_sell_ammo = {
 
 	ai_strategy = {
 		type = equipment_market_for_sale_threshold
-		id = flame
+		id = mechanized
 		value = -999	
         }
 	ai_strategy = {
 		type = equipment_market_for_sale_factor
-		id = flame
+		id = mechanized
 		value = -999
 	}
 	ai_strategy = {
 		type = equipment_market_max_for_sale
-		id = flame
+		id = mechanized
 		value = 200
 	}
 	
