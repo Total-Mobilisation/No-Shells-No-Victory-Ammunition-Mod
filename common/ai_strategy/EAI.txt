@@ -2345,7 +2345,7 @@ min_trucks_3 = {
 		ai_strategy = {
 		type = equipment_production_min_factories
 		id = motorized
-		value = 15
+		value = 10
 	}
 }
 min_trucks_4 = {
@@ -2361,7 +2361,7 @@ min_trucks_4 = {
 		ai_strategy = {
 		type = equipment_production_min_factories
 		id = motorized
-		value = 35
+		value = 15
 	}
 }
 default_unit_production = {
