@@ -1,0 +1,384 @@
+dont_sell_ammo = {
+	enable = {
+		always = yes
+	}
+	abort_when_not_enabled = yes
+
+	ai_strategy = {
+		type = equipment_market_for_sale_threshold
+		id = mechanized
+		value = -999	
+        }
+	ai_strategy = {
+		type = equipment_market_for_sale_factor
+		id = mechanized
+		value = -999
+	}
+	ai_strategy = {
+		type = equipment_market_max_for_sale
+		id = mechanized
+		value = 200
+	}
+	
+}
+
+default_attack_rush = { 
+	enable = {
+check_variable = { days_left_of_max_ammo_usage > 10 }	}
+	abort = {
+check_variable = { days_left_of_max_ammo_usage < 5 }	}
+	ai_strategy = {
+		type = front_control
+		ordertype = invasion
+		execute_order = yes
+		manual_attack = yes
+
+	}
+	ai_strategy = {
+		type = front_control
+		ordertype = front
+		execution_type = rush_weak
+		execute_order = yes
+		manual_attack = yes
+
+                priority = 1
+		country_trigger = {
+			OR = {
+				original_tag = GER
+				original_tag = ROM
+				original_tag = HUN
+				original_tag = ITA
+				original_tag = ENG
+				original_tag = FRA
+				original_tag = BEL
+				original_tag = HOL
+				original_tag = POL
+				original_tag = SPR
+				original_tag = SOV
+				original_tag = JAP
+				original_tag = CHI
+				original_tag = USA
+				original_tag = CAN
+				original_tag = GRE
+				original_tag = TUR
+				original_tag = FIN
+				original_tag = YUG
+				original_tag = SAF
+				original_tag = AST
+				original_tag = PHI
+				original_tag = SIA
+				original_tag = RAJ
+			}
+		}
+	}
+
+
+}
+
+default_attack_careful = { 
+	enable = {
+		NOT = {
+			original_tag = SPR
+			original_tag = SPD
+			original_tag = SPA
+		}
+check_variable = { days_left_of_max_ammo_usage < 5 }	}
+	abort = {
+check_variable = { days_left_of_max_ammo_usage > 10 }	}
+	ai_strategy = {
+		type = front_control
+		ordertype = invasion
+		execute_order = no
+		manual_attack = yes
+
+	}
+	ai_strategy = {
+		type = front_control
+		ordertype = front
+		execution_type = careful
+		execute_order = no
+		manual_attack = yes
+
+                priority = 1
+		country_trigger = {
+			OR = {
+				original_tag = GER
+				original_tag = ROM
+				original_tag = HUN
+				original_tag = ITA
+				original_tag = ENG
+				original_tag = FRA
+				original_tag = BEL
+				original_tag = HOL
+				original_tag = POL
+				original_tag = SPR
+				original_tag = SOV
+				original_tag = JAP
+				original_tag = CHI
+				original_tag = USA
+				original_tag = CAN
+				original_tag = GRE
+				original_tag = TUR
+				original_tag = FIN
+				original_tag = YUG
+				original_tag = SAF
+				original_tag = AST
+				original_tag = PHI
+				original_tag = SIA
+				original_tag = RAJ
+			}
+		}
+	}
+	ai_strategy = {
+		type = build_army
+		id = cavalry
+		value = -300
+	}
+
+	ai_strategy = {
+		type = build_army
+		id = camelry
+		value = -300
+	}
+
+	ai_strategy = {
+		type = build_army
+		id = motorized
+		value = -300
+	}
+
+	ai_strategy = {
+		type = build_army
+		id = armored_car
+		value = -300
+	}
+
+	ai_strategy = {
+		type = build_army
+		id = mechanized
+		value = -300
+	}
+
+	ai_strategy = {
+		type = build_army
+		id = garrison
+		value = -300
+	}
+
+	ai_strategy = {
+		type = build_army
+		id = suppression
+		value = -300
+	}
+
+	ai_strategy = {
+		type = build_army
+		id = paratroopers
+		value = -300
+	}
+
+	ai_strategy = {
+		type = build_army
+		id = mountaineers
+		value = -300
+	}
+
+	ai_strategy = {
+		type = build_army
+		id = marines
+		value = -300
+	}
+
+	ai_strategy = {
+		type = build_army
+		id = armor
+		value = -300
+	}
+
+	ai_strategy = {
+		type = build_army
+		id = light_armor
+		value = -300
+	}
+
+	ai_strategy = {
+		type = build_army
+		id = heavy_armor
+		value = -300
+	}
+
+	ai_strategy = {
+		type = build_army
+		id = medium_armor
+		value = -300
+	}
+
+	ai_strategy = {
+		type = build_army
+		id = modern_armor
+		value = -300
+	}
+
+	ai_strategy = {
+		type = build_army
+		id = infantry
+		value = -300
+	}
+}
+
+FRA_all_in = {
+	allowed = {
+		tag = FRA # not original_tag to avoid Vichy weirdness
+	}
+	enable = {
+         date < 1942.1.1
+		has_war_with = GER
+		BEL = {
+			has_capitulated = no
+		}
+	}
+	abort = {
+	BEL = {
+			has_capitulated = yes
+		}
+	}
+	ai_strategy = {
+		type = conquer
+		id = "LUX"
+		value = 500
+	}
+	ai_strategy = {
+		type = dont_defend_ally_borders
+		id = "ENG"
+		value = 9999
+	}
+	ai_strategy = {
+		type = front_unit_request
+
+		state = 18
+
+		value = 25 # lets put more units, should be safe
+	}
+	ai_strategy = {
+		type = front_unit_request
+
+		state = 785
+
+		value = 25 # lets put more units, should be safe
+	}
+	ai_strategy = {
+		type = front_unit_request
+
+		state = 29
+
+		value = 25 # lets put more units, should be safe
+	}
+	ai_strategy = {
+		type = front_unit_request
+
+		state = 28
+
+		value = 25 # lets put more units, should be safe
+	}
+	ai_strategy = {
+		type = front_unit_request
+
+		tag = GER
+
+		value = 50 # lets put more units, should be safe
+	}
+	ai_strategy = {
+		type = front_unit_request
+
+		tag = ITA
+
+		value = 5 # lets put more units, should be safe
+	}
+}
+FRA_all_in_2 = {
+	allowed = {
+		tag = FRA # not original_tag to avoid Vichy weirdness
+	}
+	enable = {
+		has_war_with = GER
+
+		BEL = {
+			has_capitulated = yes
+		}
+	}
+	abort = {
+
+			date > 1942.1.1
+	}
+	ai_strategy = {
+		type = dont_defend_ally_borders
+		id = "ENG"
+		value = 9999
+	}
+	ai_strategy = {
+		type = front_unit_request
+
+		tag = GER
+
+		value = 98 # lets put more units, should be safe
+	}
+	ai_strategy = {
+		type = front_unit_request
+
+		tag = ITA
+
+		value = 2 # lets put more units, should be safe
+	}
+}
+
+FRA_all_in_3 = {
+	allowed = {
+		tag = FRA # not original_tag to avoid Vichy weirdness
+	}
+	enable = {
+		has_war_with = GER
+
+		HOL = {
+			has_capitulated = yes
+		}
+	}
+	abort = {
+
+			date > 1942.1.1
+	}
+	ai_strategy = {
+		type = dont_defend_ally_borders
+		id = "ENG"
+		value = 9999
+	}
+	ai_strategy = {
+		type = front_unit_request
+
+		tag = GER
+
+		value = 98 # lets put more units, should be safe
+	}
+	ai_strategy = {
+		type = front_unit_request
+
+		tag = ITA
+
+		value = 2 # lets put more units, should be safe
+	}
+	ai_strategy = {
+		type = front_unit_request
+
+		tag = SIA
+
+		value = -100 # lets put more units, should be safe
+	}
+	ai_strategy = {
+		type = front_unit_request
+
+		tag = JAP
+
+		value = -100 # lets put more units, should be safe
+	}
+}
+
+
