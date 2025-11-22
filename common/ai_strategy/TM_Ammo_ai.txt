@@ -26,7 +26,7 @@ default_attack_rush = {
 	enable = {
 check_variable = { days_left_of_max_ammo_usage > 10 }	}
 	abort = {
-check_variable = { days_left_of_max_ammo_usage < 5 }	}
+check_variable = { days_left_of_max_ammo_usage < 3 }	}
 	ai_strategy = {
 		type = front_control
 		ordertype = invasion
@@ -82,7 +82,7 @@ default_attack_careful = {
 			original_tag = SPD
 			original_tag = SPA
 		}
-check_variable = { days_left_of_max_ammo_usage < 5 }	}
+check_variable = { days_left_of_max_ammo_usage < 3 }	}
 	abort = {
 check_variable = { days_left_of_max_ammo_usage > 10 }	}
 	ai_strategy = {
