@@ -24,7 +24,7 @@ dont_sell_ammo = {
 
 default_attack_rush = { 
 	enable = {
-check_variable = { days_left_of_max_ammo_usage > 10 }	}
+check_variable = { days_left_of_max_ammo_usage > 5 }	}
 	abort = {
 check_variable = { days_left_of_max_ammo_usage < 3 }	}
 	ai_strategy = {
@@ -84,7 +84,7 @@ default_attack_careful = {
 		}
 check_variable = { days_left_of_max_ammo_usage < 3 }	}
 	abort = {
-check_variable = { days_left_of_max_ammo_usage > 10 }	}
+check_variable = { days_left_of_max_ammo_usage > 4 }	}
 	ai_strategy = {
 		type = front_control
 		ordertype = invasion
