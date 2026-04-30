@@ -36,9 +36,10 @@ ammo_adjustment_modifier = {
     motorized_attack_factor = infantry_ammo_malus_offset
     mechanized_attack_factor = infantry_ammo_malus_offset
 
-    ground_attack_factor = artillery_ammo_malus
-    air_strategic_bomber_bombing_factor = artillery_ammo_malus
-    air_nav_efficiency = artillery_ammo_malus
-    air_cas_present_factor = artillery_ammo_malus
-    rocket_attack_factor = artillery_ammo_malus
+    ground_attack_factor = air_ammo_malus
+    air_strategic_bomber_bombing_factor = air_ammo_malus
+    air_nav_efficiency = air_ammo_malus
+    air_cas_present_factor = air_ammo_malus
+    air_cas_efficiency  = air_ammo_malus
+    rocket_attack_factor = air_ammo_malus
 }

@@ -36,12 +36,18 @@ total_mob_daily_xp_change_calculator = {
 			#Multiply by ammo usage modifiers
 			multiply_variable = { army_ammunition_expenditure = ammo_usage_modifier }
 			multiply_variable = { army_ammunition_expenditure = additional_ammo_usage_modifier }
+
+			multiply_variable = { army_ammunition_expenditure = ammo_usage_modifier_air }
+			multiply_variable = { army_ammunition_expenditure = additional_ammo_usage_modifier }
 			
 			#Calculate army experience to offset
 			set_variable = { army_experience_offset = army_ammunition_expenditure }
 			multiply_variable = { army_experience_offset = -0.99 }
 
 			army_experience = army_experience_offset
+set_variable = { temp_xp = army_experience }
+add_variable_to = { temp_xp = army_experience_offset }
+army_experience = temp_xp
 		}
 		#Caps army experience at 1000
 		If = {
@@ -165,13 +171,14 @@ total_mob_ammunition_calculation_effects = {
 		LIMIT = {check_variable = { days_left_of_max_ammo_usage > 10 } }
 		set_variable = { ammo_malus = 0 }
 		set_variable = { ammo_usage_modifier = 1 }
-		
+                set_variable = { additional_ammo_usage_modifier = 1 }  # ADD THIS		
 		multiply_variable = { ammo_malus = 2 }
 		set_variable = { infantry_ammo_malus_offset = ammo_malus }
 		multiply_variable = { infantry_ammo_malus_offset = -0.5 }
 		set_variable = { artillery_ammo_malus = ammo_malus }
 		set_variable = { org_ammo_malus_offset = ammo_malus }
 		multiply_variable = { org_ammo_malus_offset = 0.5 }
+
 		
 	}
 	#Ammo below 10 days and above 5 days starts to scale down
@@ -187,7 +194,7 @@ total_mob_ammunition_calculation_effects = {
 
 			LIMIT = {
                 is_ai = no 
-                check_variable = { days_left_of_max_ammo_usage < 5 }
+                check_variable = { days_left_of_max_ammo_usage < 7.5 }
 			}
 			
 			#Multiplies Ammo Malus Penalties
@@ -199,7 +206,7 @@ total_mob_ammunition_calculation_effects = {
 
 			LIMIT = { 
                 is_ai = no 
-                check_variable = { days_left_of_max_ammo_usage < 2.5 }
+                check_variable = { days_left_of_max_ammo_usage < 5 }
 			}
 			
 			#Multiplies Ammo Malus Penalties
@@ -256,7 +263,7 @@ total_mob_ai_ammunition_production_effect = {
 		}
 		#Calculates IC for ammo
 		set_variable = { ammo_to_add = ai_mil_ammo_production_adjustment }
-		multiply_variable = { ammo_to_add = -1.4 }
+		multiply_variable = { ammo_to_add = -2.8 }
 		multiply_variable = { ammo_to_add = num_of_military_factories }
 		
 		add_equipment_to_stockpile = {

@@ -1,0 +1,166 @@
+# Air XP → shared land_ammunition_equipment consumption (bombers + CAS only)
+# Uses same malus/offsets/additional_ammo_usage_modifier from land_calc
+# Call these AFTER the land blocks in on_daily
+
+total_mob_daily_air_xp_change_calculator = {
+    IF = {
+        LIMIT = {
+            NOT = { has_variable = previous_day_air_xp }
+        }
+        set_variable = { previous_day_air_xp = air_experience }
+    }
+    IF = {
+        LIMIT = {
+            OR = {
+                NOT = { check_variable = { previous_day_air_xp = air_experience } }
+            }
+        }
+        IF = {
+            LIMIT = {
+                check_variable = { previous_day_air_xp < air_experience }
+            }
+            set_variable = { air_ammunition_expenditure = air_experience }
+            subtract_from_variable = { air_ammunition_expenditure = previous_day_air_xp }
+            set_variable = { air_experience_factor_total = 10 }
+            add_to_variable = { air_experience_factor_total = modifier@experience_gain_air_factor }
+            divide_variable = { air_ammunition_expenditure = air_experience_factor_total }
+            subtract_from_variable = { air_ammunition_expenditure = modifier@experience_gain_air }
+            multiply_variable = { air_ammunition_expenditure = ammo_usage_modifier }
+            multiply_variable = { air_ammunition_expenditure = additional_ammo_usage_modifier }
+            set_variable = { air_experience_offset = air_ammunition_expenditure }
+            multiply_variable = { air_experience_offset = -0.99 }
+            air_experience = air_experience_offset
+        }
+        If = {
+            LIMIT = {
+                check_variable = { air_experience > 1000 }
+            }
+            set_variable = { experience_cap_amount = air_experience }
+            subtract_from_variable = { experience_cap_amount = 1000 }
+            multiply_variable = { experience_cap_amount = -1 }
+            air_experience = experience_cap_amount
+        }
+        set_variable = { previous_day_air_xp = air_experience }
+    }
+}
+
+total_mob_air_composition_effect = {
+    # Fighters (light) - base 100 planes/wing, low ammo usage
+    set_variable = { equipped_fighter_wings = num_equipment_in_air_wings@fighter_equipment }
+    divide_variable = { equipped_fighter_wings = 100 }  # 100 planes per wing
+
+    # Bombers + CAS (heavy) - higher ammo usage
+    set_variable = { equipped_bomber_wings = num_equipment_in_air_wings@close_air_support_equipment }
+    add_to_variable = { equipped_bomber_wings = num_equipment_in_air_wings@tactical_bomber_equipment }
+    add_to_variable = { equipped_bomber_wings = num_equipment_in_air_wings@naval_bomber_equipment }
+    add_to_variable = { equipped_bomber_wings = num_equipment_in_air_wings@strategic_bomber_equipment }
+    divide_variable = { equipped_bomber_wings = 100 }  # 100 planes per wing
+
+    # Total wings for scaling
+    set_variable = { total_air_wings = equipped_fighter_wings }
+    add_to_variable = { total_air_wings = equipped_bomber_wings }
+
+    # Consumption factor: fighters = 1× base, bombers/CAS = 40× base (halved from previous 80×)
+    set_variable = { ammo_usage_modifier_air = equipped_fighter_wings }
+    set_variable = { bomber_contribution = equipped_bomber_wings }
+    multiply_variable = { bomber_contribution = 12 }
+    add_to_variable = { ammo_usage_modifier_air = bomber_contribution }
+    divide_variable = { ammo_usage_modifier_air = total_air_wings }  # Normalize per wing
+
+    # Fallback if no air wings at all
+    IF = {
+        LIMIT = {
+            check_variable = { total_air_wings = 0 }
+        }
+        set_variable = { ammo_usage_modifier_air = 1 }
+    }
+}
+total_mob_air_ammunition_consumption_effect = {
+	IF = {
+		LIMIT = { 
+			air_ammunition_expenditure > 0
+		}
+        IF = {
+            LIMIT = {
+                check_variable = { num_equipment@land_ammunition_equipment > air_ammunition_expenditure }
+            }
+            set_variable = { negative_ammunition_consumption = air_ammunition_expenditure }
+            multiply_variable = { negative_ammunition_consumption = -1 }
+            add_equipment_to_stockpile = {
+                type = land_ammunition_equipment
+                amount = negative_ammunition_consumption
+            }
+        }
+        ELSE = {
+            set_variable = { negative_ammunition_consumption = num_equipment@land_ammunition_equipment }
+            multiply_variable = { negative_ammunition_consumption = -1 }
+            add_equipment_to_stockpile = {
+                type = land_ammunition_equipment
+                amount = negative_ammunition_consumption
+            }
+        }
+    }
+    ELSE = {
+        set_variable = { air_ammunition_expenditure = 0 }
+    }
+}
+total_mob_air_ammunition_calculation_effects = {
+	#Calculate Attack Modifiers based on ammo.
+	
+	#Ammo over 10 days has no penalties
+	IF = {
+		LIMIT = {check_variable = { days_left_of_max_ammo_usage > 10 } }
+		set_variable = { air_ammo_usage_modifier = 1 }
+                set_variable = { additional_air_ammo_usage_modifier = 1 }  # ADD THIS		
+
+		set_variable = { air_ammo_malus = ammo_malus }
+		multiply_variable = { air_ammo_malus = 1.2 }
+		
+	}
+	#Ammo below 10 days and above 5 days starts to scale down
+	ELSE_IF = {
+
+		#Calculate Penalty
+		set_variable = { air_ammo_malus = days_left_of_max_ammo_usage }
+		subtract_from_variable = { air_ammo_malus = 10 }
+		multiply_variable = { air_ammo_malus = 0.05 }
+		
+		#Ammo below 5 days gets increased penalties
+		IF = {
+
+			LIMIT = {
+                is_ai = no 
+                check_variable = { days_left_of_max_ammo_usage < 7.5 }
+			}
+			
+			#Multiplies Ammo Malus Penalties
+			divide_variable = { air_ammo_malus = 0.75 }
+		}
+		
+		#Ammo below 2.5 days gets increased penalties
+		IF = {
+
+			LIMIT = { 
+                is_ai = no 
+                check_variable = { days_left_of_max_ammo_usage < 5 }
+			}
+			
+			#Multiplies Ammo Malus Penalties
+			multiply_variable = { air_ammo_malus = 3 }
+			divide_variable = { air_ammo_malus = 2 }
+
+			
+		}
+		#Reduce ammo usage
+		set_variable = { additional_air_ammo_usage_modifier = air_ammo_malus }
+		add_to_variable = { additional_air_ammo_usage_modifier = 1.01 }
+		set_variable = { air_ammo_malus = ammo_malus }
+		multiply_variable = { air_ammo_malus = 1.2 }
+IF = {
+            LIMIT = { check_variable = { air_ammo_malus < -0.95 } }
+            set_variable = { air_ammo_malus = -0.95 }
+        }
+
+
+	}
+

@@ -14,6 +14,10 @@ on_actions = {
 				total_mob_army_composition_effect = yes
 				total_mob_ammunition_consumption_effect = yes
 				total_mob_ammunition_calculation_effects = yes
+				total_mob_daily_air_xp_change_calculator = yes
+				total_mob_air_composition_effect = yes
+				total_mob_air_ammunition_consumption_effect = yes
+				total_mob_air_ammunition_calculation_effects = yes
 				
 				#Add ammunition
 				set_variable = { ammunition_to_add = max_daily_ammo_use }
@@ -37,6 +41,10 @@ on_actions = {
 			total_mob_ammunition_consumption_effect = yes
 			total_mob_ammunition_calculation_effects = yes
 			total_mob_ai_ammunition_production_effect = yes
+				total_mob_daily_air_xp_change_calculator = yes
+				total_mob_air_composition_effect = yes
+				total_mob_air_ammunition_consumption_effect = yes
+				total_mob_air_ammunition_calculation_effects = yes
 
 				
 		}

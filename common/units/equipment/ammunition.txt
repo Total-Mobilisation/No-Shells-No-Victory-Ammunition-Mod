@@ -19,6 +19,7 @@ equipments = {
 		is_convertable = no  
 		
 		build_cost_ic = 2
+			reliability = 1.2
 		
 		resources = {
 			steel = 2
@@ -34,7 +35,8 @@ equipments = {
 		
 		active = yes
 		is_buildable = yes
-	
+			reliability = 1.2
+
 	}
 
 }
