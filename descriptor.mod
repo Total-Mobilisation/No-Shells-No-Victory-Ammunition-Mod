@@ -6,4 +6,5 @@ tags={
 	"Military"
 }
 name="No Shells, No Victory - Ammunition Mod"
-supported_version="1.16.9"
+supported_version="1.18.*"
+remote_file_id="3614084767"
