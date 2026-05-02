@@ -18,7 +18,7 @@ equipments = {
 		
 		is_convertable = no  
 		
-		build_cost_ic = 2
+		build_cost_ic = 10
 			reliability = 1.2
 		
 		resources = {
